@@ -4,12 +4,12 @@ import RouteWithSubRoutes from "../utils/RoutesWithSubRoutes";
 import AuthService from "../services/auth.service";
 import { Switch } from "react-router-dom";
 
-export default function Student(props) {
-  useEffect(() => {
-    const currentUser = AuthService.getCurrentUser();
+export default function Admin(props) {
+  const currentUser = AuthService.getCurrentUser();
 
-    if (currentUser && currentUser.role === "Student") {
-      props.history.push("/student/manage-student");
+  useEffect(() => {
+    if (currentUser && currentUser.role === "Admin") {
+      props.history.push("/admin");
     } else {
       props.history.push("/login");
     }
@@ -18,11 +18,6 @@ export default function Student(props) {
   return (
     <div>
       <StudentSidebar />
-      <Switch>
-        {props.routes.map((route, i) => (
-          <RouteWithSubRoutes key={i} {...route} />
-        ))}
-      </Switch>
     </div>
   );
 }

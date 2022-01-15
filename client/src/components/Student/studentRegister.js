@@ -51,7 +51,7 @@ export default function StudentRegister(props) {
   const createStudent = () => {
     StudentService.registerStudent(student).then(
       () => {
-        props.history.push("/home/manage-student");
+        props.history.push("/student/manage-student");
       },
       (error) => {
         const resMessage =

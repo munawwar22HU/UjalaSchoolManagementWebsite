@@ -3,11 +3,18 @@ import "./Login.css";
 import AuthService from "../services/auth.service";
 
 export default function Login(props) {
-  const currentUser = AuthService.getCurrentUser();
-
   useEffect(() => {
+    const currentUser = AuthService.getCurrentUser();
     if (currentUser) {
-      props.history.push("/home");
+      switch (currentUser.role) {
+        case "Student":
+          props.history.push("/student");
+          break;
+        case "Admin":
+          props.history.push("/admin");
+          break;
+      }
+
       window.location.reload(false);
     }
   }, []);
@@ -21,14 +28,8 @@ export default function Login(props) {
   });
 
   const toggleVisibility = () => {
-    // console.log('clicked')
     const val = !user.toggle;
     setUser({ ...user, toggle: val });
-    // if (password.type === 'password') {
-    //   password.type = 'text'
-    // } else {
-    //   password.type = 'password'
-    // }
   };
 
   const handleLogin = () => {
@@ -36,7 +37,16 @@ export default function Login(props) {
 
     AuthService.login(user).then(
       () => {
-        props.history.push("/home");
+        const currentUser = AuthService.getCurrentUser();
+        switch (currentUser.role) {
+          case "Student":
+            props.history.push("/student");
+            break;
+          case "Admin":
+            props.history.push("/admin");
+            break;
+        }
+
         window.location.reload();
       },
       (error) => {
@@ -57,8 +67,8 @@ export default function Login(props) {
       <div className="login-box">
         <div className="card card-outline card-primary">
           <div className="card-header text-center">
-            <a href="../../index2.html" className="h1">
-              <b> Ujala </b> Center
+            <a href="https://www.parentsvoice-association.org/" className="h1">
+              <b> Ujala </b> Center <span className="icon" />
             </a>
           </div>
           <div className="card-body">

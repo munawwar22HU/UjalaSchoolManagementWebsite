@@ -81,7 +81,7 @@ export default function StudentUpdate(props) {
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/home"> Home </a>
+                  <a href="/student"> Home </a>
                 </li>
                 <li className="breadcrumb-item active"> Update Student </li>
               </ol>

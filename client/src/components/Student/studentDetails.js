@@ -12,7 +12,7 @@ export default function StudentDetails(props) {
 
   const updateStudent = (id) => {
     console.log(id);
-    props.history.push("/home/" + id);
+    props.history.push("/student/" + id);
   };
 
   const deleteStudent = (id) => {
@@ -129,7 +129,7 @@ export default function StudentDetails(props) {
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/home">Home</a>
+                  <a href="/student">Home</a>
                 </li>
                 <li className="breadcrumb-item active">Student Details</li>
               </ol>

@@ -1,5 +1,6 @@
 import Login from "./screens/Login.js";
 import Student from "./screens/Student.js";
+import Admin from "./screens/Admin";
 import StudentDashboard from "./components/Student/studentDashboard.js";
 import StudentDetails from "./components/Student/studentDetails.js";
 import StudentRegister from "./components/Student/studentRegister.js";
@@ -7,44 +8,49 @@ import StudentUpdate from "./components/Student/studentUpdate";
 import ExternalOrganisation from "./components/Student/externalOrganisation";
 import ExternalOrganisationDetails from "./components/Student/externalOrganisationDetails";
 import HealthCard from "./components/Student/healthCard.js";
+
 const routes = [
   {
     path: "/login",
     component: Login,
   },
   {
-    path: "/home",
+    path: "/student",
     component: Student,
     routes: [
       {
-        path: "/home/dashboard",
+        path: "/student/dashboard",
         component: StudentDashboard,
       },
       {
-        path: "/home/add-student",
+        path: "/student/add-student",
         component: StudentRegister,
       },
       {
-        path: "/home/manage-student",
+        path: "/student/manage-student",
         component: StudentDetails,
       },
       {
-        path: "/home/add-external-organisation",
+        path: "/student/add-external-organisation",
         component: ExternalOrganisation,
       },
       {
-        path: "/home/manage-external-organisation",
+        path: "/student/manage-external-organisation",
         component: ExternalOrganisationDetails,
       },
       {
-        path: "/home/health-card",
+        path: "/student/health-card",
         component: HealthCard,
       },
       {
-        path: "/home/:id",
+        path: "/student/:id",
         component: StudentUpdate,
       },
     ],
+  },
+  {
+    path: "/admin",
+    component: Admin,
   },
 ];
 

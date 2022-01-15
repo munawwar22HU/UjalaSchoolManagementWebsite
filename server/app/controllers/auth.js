@@ -3,13 +3,14 @@ import generateToken from "../utils/generateToken.js";
 import bcrypt from "bcryptjs";
 
 export const registerUser = async (req, res) => {
-  const { email, name, password, role } = req.body;
+  const { email, name, password, role, image } = req.body;
   bcrypt.hash(password, 10).then((hashedpassword) => {
     const user = new UserData({
       name,
       email,
       password: hashedpassword,
       role,
+      image,
     });
     try {
       user.save();
@@ -31,11 +32,11 @@ export const loginUser = async (req, res) => {
         .compare(password, savedUser.password)
         .then((doMatch) => {
           if (doMatch) {
-            const { _id, name, email, role } = savedUser;
+            const { _id, name, email, role, image } = savedUser;
             const token = generateToken(_id);
             res
               .status(200)
-              .send({ accessToken: token, id: _id, email, name, role });
+              .send({ accessToken: token, id: _id, email, name, role, image });
           } else {
             return res
               .status(404)
@@ -59,6 +60,7 @@ export const getUser = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      image: user.image,
     });
   } else {
     res.status(404);
