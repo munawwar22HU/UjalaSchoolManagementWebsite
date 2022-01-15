@@ -8,6 +8,7 @@ import StudentUpdate from "./components/Student/studentUpdate";
 import ExternalOrganisation from "./components/Student/externalOrganisation";
 import ExternalOrganisationDetails from "./components/Student/externalOrganisationDetails";
 import HealthCard from "./components/Student/healthCard.js";
+import AdminDashboard from "./components/Admin/adminDashboard.js";
 
 const routes = [
   {
@@ -51,6 +52,12 @@ const routes = [
   {
     path: "/admin",
     component: Admin,
+    routes: [
+      {
+        path: "/admin/dashboard",
+        component: AdminDashboard,
+      },
+    ],
   },
 ];
 

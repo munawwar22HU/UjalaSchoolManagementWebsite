@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import StudentSidebar from "../components/Student/studentSidebar.js";
+import AdminSidebar from "../components/Admin/adminSidebar.js";
 import RouteWithSubRoutes from "../utils/RoutesWithSubRoutes";
 import AuthService from "../services/auth.service";
 import { Switch } from "react-router-dom";
@@ -9,7 +9,7 @@ export default function Admin(props) {
 
   useEffect(() => {
     if (currentUser && currentUser.role === "Admin") {
-      props.history.push("/admin");
+      props.history.push("/admin/dashboard");
     } else {
       props.history.push("/login");
     }
@@ -17,7 +17,12 @@ export default function Admin(props) {
 
   return (
     <div>
-      <StudentSidebar />
+      <AdminSidebar />
+      <Switch>
+        {props.routes.map((route, i) => (
+          <RouteWithSubRoutes key={i} {...route} />
+        ))}
+      </Switch>
     </div>
   );
 }
