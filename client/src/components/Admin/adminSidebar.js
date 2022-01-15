@@ -10,7 +10,7 @@ export default function AdminSidebar() {
         style={{ position: "fixed" }}
       >
         {/* Brand Logo */}
-        <a href="/student" className="brand-link">
+        <a href="/admin" className="brand-link">
           <img
             src="../../images/cropped-ujala-logo-copy.png"
             alt="Ujala Center Logo"
