@@ -20,7 +20,7 @@ app.use(express.json({ limit: "20mb", extended: true }));
 app.use(express.urlencoded({ limit: "20mb", extended: true }));
 
 app.use("/auth", authRoutes);
-app.use("/student", studentRoutes);
+app.use("/students", studentRoutes);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose
