@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f20ff7fc.chunk.css",
+    "main.js": "/static/js/main.54124236.chunk.js",
+    "main.js.map": "/static/js/main.54124236.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7545a8a1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7545a8a1.js.map",
+    "static/js/2.425026fe.chunk.js": "/static/js/2.425026fe.chunk.js",
+    "static/js/2.425026fe.chunk.js.map": "/static/js/2.425026fe.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.f20ff7fc.chunk.css.map": "/static/css/main.f20ff7fc.chunk.css.map",
+    "static/js/2.425026fe.chunk.js.LICENSE.txt": "/static/js/2.425026fe.chunk.js.LICENSE.txt",
+    "static/media/Login.css": "/static/media/Ujala.f4018c79.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7545a8a1.js",
+    "static/js/2.425026fe.chunk.js",
+    "static/css/main.f20ff7fc.chunk.css",
+    "static/js/main.54124236.chunk.js"
+  ]
+}

@@ -1,0 +1,19 @@
+.container{
+   
+    background: url("Ujala.jpg");
+    min-height: 100%;
+    min-width: 100%;
+  
+   
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+  
+   
+    position: fixed;
+ 
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
