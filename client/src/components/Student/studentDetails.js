@@ -47,6 +47,19 @@ export default function StudentDetails(props) {
           accessor: "name",
         },
         {
+          Header: " Image",
+          accessor: "image",
+          Cell: (row) => (
+            <div>
+              <img
+                className="profile-user-img img-circle"
+                src={row.row.original.image}
+                alt="User profile "
+              />
+            </div>
+          ),
+        },
+        {
           Header: "Roll Number",
           accessor: "rollNumber",
         },
@@ -104,6 +117,7 @@ export default function StudentDetails(props) {
     studentService.getAllStudents().then(
       (response) => {
         setStudentList(response.data);
+        console.log(response.data);
       },
       (error) => {
         const resMessage =

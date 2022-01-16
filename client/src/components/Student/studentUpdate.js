@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Stepper from "bs-stepper";
 import StudentService from "../../services/student.service";
+import axios from "axios";
 export default function StudentUpdate(props) {
   const [student, setStudent] = useState({
     name: "",
@@ -23,12 +24,50 @@ export default function StudentUpdate(props) {
     fatherContactNumber: "",
     fatherAddress: "",
     fatherOccupation: "",
+    image: "",
   });
 
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
     text: "",
   });
+
+  const [file, setFile] = React.useState("");
+
+  // Handles file Upload
+  const handleUpload = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  // Handles file upload to Server
+  const handleServer = async (event) => {
+    const { data: CLOUDINARY_URL } = await axios.get("/cloudinary/url");
+
+    const { data: CLOUDINARY_UPLOAD_PRESET } = await axios.get(
+      "/cloudinary/preset"
+    );
+    // const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+    await axios({
+      url: CLOUDINARY_URL,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      data: formData,
+    })
+      .then(function (res) {
+        setStudent({ ...student, image: res.data.url });
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+
+    console.log("url is", student.image);
+  };
 
   useEffect(() => {
     const stepperEl = document.querySelector("#stepper1");
@@ -530,21 +569,45 @@ export default function StudentUpdate(props) {
                     </div>
                     {/* Upload Information*/}
                     <div id="upload-part" className="content" role="tabpanel">
-                      <div className="form-group">
-                        <label> File input </label>
-                        <div className="input-group">
-                          <div className="custom-file">
-                            <input
-                              type="file"
-                              className="custom-file-input"
-                              id="exampleInputFile"
-                            />
-                            <label className="custom-file-label">
-                              Choose file
-                            </label>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="form-group">
+                            <label> File input </label>
+                            <div className="input-group">
+                              <div className="custom-file">
+                                <input
+                                  type="file"
+                                  className="custom-file-input"
+                                  id="exampleInputFile"
+                                  onChange={handleUpload}
+                                />
+                                <label className="custom-file-label">
+                                  {file ? file.name : "Choose File"}
+                                </label>
+                              </div>
+
+                              <div className="input-group-append">
+                                <span
+                                  className="input-group-text"
+                                  onClick={handleServer}
+                                >
+                                  {" "}
+                                  Upload{" "}
+                                </span>
+                              </div>
+                            </div>
                           </div>
-                          <div className="input-group-append">
-                            <span className="input-group-text"> Upload </span>
+                        </div>
+                        <div className="col-md-6">
+                          <div className="box-profile">
+                            <div className="text-center">
+                              <img
+                                className="profile-user-img img-circle"
+                                src={student.image}
+                                alt="User profile picture"
+                                style={{ width: 300, height: 300 }}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>

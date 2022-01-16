@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import authRoutes from "./app/routes/auth.js";
 import studentRoutes from "./app/routes/student.js";
+import cloudinaryRoutes from "./app/routes/cloudinary.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ limit: "20mb", extended: true }));
 
 app.use("/auth", authRoutes);
 app.use("/students", studentRoutes);
+app.use("/cloudinary", cloudinaryRoutes);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose
