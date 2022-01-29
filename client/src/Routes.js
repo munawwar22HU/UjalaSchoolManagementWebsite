@@ -9,12 +9,14 @@ import ExternalOrganisation from "./components/Student/externalOrganisation";
 import ExternalOrganisationDetails from "./components/Student/externalOrganisationDetails";
 import HealthCard from "./components/Student/healthCard.js";
 import AdminDashboard from "./components/Admin/adminDashboard.js";
+import Profile from "./components/Profile.js";
 
 const routes = [
   {
     path: "/login",
     component: Login,
   },
+
   {
     path: "/student",
     component: Student,
@@ -22,6 +24,10 @@ const routes = [
       {
         path: "/student/dashboard",
         component: StudentDashboard,
+      },
+      {
+        path: "/student/profile",
+        component: Profile,
       },
       {
         path: "/student/add-student",
@@ -56,6 +62,10 @@ const routes = [
       {
         path: "/admin/dashboard",
         component: AdminDashboard,
+      },
+      {
+        path: "/admin/profile",
+        component: Profile,
       },
     ],
   },

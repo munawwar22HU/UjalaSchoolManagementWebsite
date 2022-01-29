@@ -52,6 +52,19 @@ export const loginUser = async (req, res) => {
     });
 };
 
+export const updateUser = async (req, res) => {
+  console.log(req.body);
+  try {
+    const id = req.params.id;
+    await UserData.findByIdAndUpdate(id, {
+      $set: req.body,
+    }).exec();
+    const user = await UserData.findById(id, { password: 0 });
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getUser = async (req, res) => {
   const user = await UserData.findById(req.user._id);
   if (user) {

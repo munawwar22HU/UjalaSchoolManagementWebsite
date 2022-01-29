@@ -6,10 +6,8 @@ import NotFound from "./components/NotFound.js";
 import Footer from "./components/footer.js";
 import Header from "./components/header.js";
 import "./App.css";
-import AuthService from "./services/auth.service";
-export default function App() {
-  const currentUser = AuthService.getCurrentUser();
 
+export default function App() {
   return (
     <BrowserRouter>
       <Route

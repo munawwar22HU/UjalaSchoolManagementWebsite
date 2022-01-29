@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Stepper from "bs-stepper";
+import StepperHeader from "../Common/Stepper/stepperHeader";
+import StepperContent from "../Common/Stepper/stepperContent";
+import StepperSelect from "../Common/Stepper/stepperSelector";
+import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import StudentService from "../../services/student.service";
 import axios from "axios";
 export default function StudentUpdate(props) {
@@ -26,6 +30,29 @@ export default function StudentUpdate(props) {
     fatherOccupation: "",
     image: "",
   });
+
+  const headers = [
+    {
+      target: "#student-part",
+      name: "Student Information",
+    },
+    {
+      target: "#mother-part",
+      name: "Mother Information",
+    },
+    {
+      target: "#father-part",
+      name: "Father Information",
+    },
+    {
+      target: "#upload-part",
+      name: "Submit",
+    },
+  ];
+
+  const customOnchange = (event, key) => {
+    setStudent({ ...student, key: event.target.value });
+  };
 
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
@@ -145,214 +172,130 @@ export default function StudentUpdate(props) {
               {/* Card Body Start */}
               <div className="card-body p-0">
                 <div className="bs-stepper" id="stepper1">
-                  {/* BS - STEPPER HEADER Start */}
-                  <div className="bs-stepper-header" role="tablist">
-                    {/* Student Information Header*/}
-                    <div className="step" data-target="#student-part">
-                      <button type="button" className="step-trigger" role="tab">
-                        <span className="bs-stepper-circle"> 1 </span>
-                        <span className="bs-stepper-label">
-                          Student Information
-                        </span>
-                      </button>
-                    </div>
-                    <div className="line" />
-                    {/* Mother Information Header */}
-                    <div className="step" data-target="#mother-part">
-                      <button type="button" className="step-trigger" role="tab">
-                        <span className="bs-stepper-circle"> 2 </span>
-                        <span className="bs-stepper-label">
-                          Mother Information
-                        </span>
-                      </button>
-                    </div>
-                    <div className="line" />
-                    {/* Father Information Header */}
-                    <div className="step" data-target="#father-part">
-                      <button type="button" className="step-trigger" role="tab">
-                        <span className="bs-stepper-circle"> 3 </span>
-                        <span className="bs-stepper-label">
-                          Father Information
-                        </span>
-                      </button>
-                    </div>
-                    <div className="line" />
-                    {/* Upload Header */}
-                    <div className="step" data-target="#upload-part">
-                      <button type="button" className="step-trigger" role="tab">
-                        <span className="bs-stepper-circle"> 4 </span>
-                        <span className="bs-stepper-label"> Submit</span>
-                      </button>
-                    </div>
-                  </div>
-                  {/* BS - STEPPER HEADER End */}
-                  {/* BS - STEPPER CONTENT Start */}
+                  {/*Header*/}
+                  <StepperHeader headers={headers} />
                   <div className="bs-stepper-content">
                     {/* Student Information*/}
                     <div id="student-part" className="content" role="tabpanel">
                       <div className="row">
                         <div className="col-md-6">
                           {/* Name */}
-                          <div className="form-group">
-                            <label>Name</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Full Name"
-                              value={student.name}
-                              disabled
-                            />
-                          </div>
+                          <StepperContent
+                            placeholder={"Full Name"}
+                            value={student.name}
+                            name={"Name"}
+                          />
                           {/* Sex */}
-                          <div className="form-group">
-                            <label>Sex</label>
-                            <select
-                              className="form-control select2"
-                              style={{ width: "100%" }}
-                              value={student.sex}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  sex: event.target.value,
-                                });
-                              }}
-                            >
-                              <option selected="selected">Sex</option>
-                              <option>Male</option>
-                              <option>Female</option>
-                              <option>Other</option>
-                            </select>
-                          </div>
-                          {/* Date of Birth */}
-                          <div className="form-group">
-                            <label>Date of Birth</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="DD-MM-YYYY"
-                              value={student.dateOfBirth}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  dateOfBirth: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
-                          {/* Religion */}
-                          <div className="form-group">
-                            <label>Religion</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Religion"
-                              value={student.religion}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  religion: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
-                          {/* Previous School */}
-                          <div className="form-group">
-                            <label>Previous School</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Previous School"
-                              value={student.previousSchool}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  previousSchool: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperSelect
+                            name={"Sex"}
+                            value={student.sex}
+                            options={["Sex", "Male", "Female", "Other"]}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                sex: event.target.value,
+                              })
+                            }
+                          />
+                          {/*Date Of Birth*/}
+                          <StepperContent
+                            name={"Date Of Birth"}
+                            value={student.dateOfBirth}
+                            placeholder={"DD-MM-YYYY"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                dateOfBirth: event.target.value,
+                              })
+                            }
+                          />
+                          {/*Religion*/}
+                          <StepperContent
+                            name={"Religion"}
+                            value={student.religion}
+                            placeholder={"Religion"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                religion: event.target.value,
+                              })
+                            }
+                          />
+                          {/*Previous School*/}
+                          <StepperContent
+                            name={"Previous School"}
+                            value={student.previousSchool}
+                            placeholder={"Previous School"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                previousSchool: event.target.value,
+                              })
+                            }
+                          />
                         </div>
                         <div className="col-md-6">
                           {/* Address */}
-                          <div className="form-group">
-                            <label>Address</label>
-                            <textarea
-                              className="form-control"
-                              rows={1}
-                              placeholder="Permenant Address"
-                              value={student.address}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  address: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperTextArea
+                            name={"Address"}
+                            value={student.address}
+                            rows={1}
+                            placeholder={"Address"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                address: event.target.value,
+                              })
+                            }
+                          />
                           {/* Contact Number */}
-                          <div className="form-group">
-                            <label>Contact Number</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Contact Number"
-                              value={student.contactNumber}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  contactNumber: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Contact Number"}
+                            value={student.contactNumber}
+                            placeholder={"Contact Number"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                contactNumber: event.target.value,
+                              })
+                            }
+                          />
                           {/* Email  Address */}
-                          <div className="form-group">
-                            <label>Email Address</label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              placeholder="Email Address"
-                              value={student.email}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  email: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Email Address"}
+                            value={student.email}
+                            placeholder={"Email Address"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                email: event.target.value,
+                              })
+                            }
+                          />
                           {/* Registration Number */}
-                          <div className="form-group">
-                            <label>Registration Number</label>
-                            <input
-                              type="name"
-                              className="form-control"
-                              placeholder="Registration Number"
-                              value={student.registrationNumber}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  registrationNumber: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Registration Number"}
+                            value={student.registrationNumber}
+                            placeholder={"Registration Number"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                registrationNumber: event.target.value,
+                              })
+                            }
+                          />
                           {/* Date of Admission */}
-                          <div className="form-group">
-                            <label>Date of Admission</label>
-                            <input
-                              type="name"
-                              className="form-control"
-                              placeholder="DD-MM-YYYY"
-                              value={student.dateOfAdmission}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  dateOfAdmission: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Date of Admission"}
+                            value={student.dateOfAdmission}
+                            placeholder={"Date of Addmission"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                dateOfAdmission: event.target.value,
+                              })
+                            }
+                          />
                         </div>
                       </div>
                       <button className="btn btn-primary" onClick={nextStepper}>
@@ -364,87 +307,68 @@ export default function StudentUpdate(props) {
                       <div className="row">
                         <div className="col-md-6">
                           {/* Name */}
-                          <div className="form-group">
-                            <label>Name</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Full Name"
-                              value={student.motherName}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  motherName: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Full Name"}
+                            value={student.motherName}
+                            placeholder={"Full Name"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                motherName: event.target.value,
+                              })
+                            }
+                          />
                           {/* CNIC */}
-                          <div className="form-group">
-                            <label>CNIC</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="CNIC"
-                              value={student.motherCNIC}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  motherCNIC: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"CNIC"}
+                            value={student.motherCNIC}
+                            placeholder={"CNIC"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                motherCNIC: event.target.value,
+                              })
+                            }
+                          />
                           {/* Address */}
-                          <div className="form-group">
-                            <label>Address</label>
-                            <textarea
-                              className="form-control"
-                              rows={4}
-                              placeholder="Permenant Address"
-                              value={student.motherAddress}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  motherAddress: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperTextArea
+                            name={"Permenant Address"}
+                            value={student.motherAddress}
+                            rows={4}
+                            placeholder={"Permenant Address"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                motherAddress: event.target.value,
+                              })
+                            }
+                          />
                         </div>
                         <div className="col-md-6">
                           {/* Contact Number */}
-                          <div className="form-group">
-                            <label>Contact Number</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Contact Number"
-                              value={student.motherContactNumber}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  motherContactNumber: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
-                          {/* Email  Address */}
-                          <div className="form-group">
-                            <label>Occupation</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Occupation"
-                              value={student.motherOccupation}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  motherOccupation: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Contact Number"}
+                            value={student.motherContactNumber}
+                            placeholder={"Contact Number"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                motherContactNumber: event.target.value,
+                              })
+                            }
+                          />
+                          {/* Occupation */}
+                          <StepperContent
+                            name={"Occupation"}
+                            value={student.motherOccupation}
+                            placeholder={"Occupation"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                motherOccupation: event.target.value,
+                              })
+                            }
+                          />
                         </div>
                       </div>
                       <button
@@ -468,87 +392,68 @@ export default function StudentUpdate(props) {
                       <div className="row">
                         <div className="col-md-6">
                           {/* Name */}
-                          <div className="form-group">
-                            <label>Name</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Full Name"
-                              value={student.fatherName}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  fatherName: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Full Name"}
+                            value={student.fatherName}
+                            placeholder={"Full Name"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                fatherName: event.target.value,
+                              })
+                            }
+                          />
                           {/* CNIC */}
-                          <div className="form-group">
-                            <label>CNIC</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="CNIC"
-                              value={student.fatherCNIC}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  fatherCNIC: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"CNIC"}
+                            value={student.fatherCNIC}
+                            placeholder={"CNIC"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                fatherCNIC: event.target.value,
+                              })
+                            }
+                          />
                           {/* Address */}
-                          <div className="form-group">
-                            <label>Address</label>
-                            <textarea
-                              className="form-control"
-                              rows={4}
-                              placeholder="Permenant Address"
-                              value={student.fatherAddress}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  fatherAddress: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperTextArea
+                            name={"Permenant Address"}
+                            value={student.fatherAddressAddress}
+                            rows={4}
+                            placeholder={"Permenant Address"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                fatherAddress: event.target.value,
+                              })
+                            }
+                          />
                         </div>
                         <div className="col-md-6">
                           {/* Contact Number */}
-                          <div className="form-group">
-                            <label>Contact Number</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Contact Number"
-                              value={student.fatherContactNumber}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  fatherContactNumber: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
-                          {/* Email  Address */}
-                          <div className="form-group">
-                            <label>Occupation</label>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Occupation"
-                              value={student.fatherOccupation}
-                              onChange={(event) => {
-                                setStudent({
-                                  ...student,
-                                  fatherOccupation: event.target.value,
-                                });
-                              }}
-                            />
-                          </div>
+                          <StepperContent
+                            name={"Contact Number"}
+                            value={student.fatherContactNumber}
+                            placeholder={"Contact Number"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                fatherContactNumber: event.target.value,
+                              })
+                            }
+                          />
+                          {/* Occupation */}
+                          <StepperContent
+                            name={"Occupation"}
+                            value={student.fatherOccupation}
+                            placeholder={"Occupation"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                fatherOccupation: event.target.value,
+                              })
+                            }
+                          />
                         </div>
                       </div>
                       <button
