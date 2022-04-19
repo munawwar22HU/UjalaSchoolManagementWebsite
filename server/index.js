@@ -24,7 +24,7 @@ app.use(express.urlencoded({ limit: "20mb", extended: true }));
 app.use("/auth", authRoutes);
 app.use("/students", studentRoutes);
 app.use("/cloudinary", cloudinaryRoutes);
-app.use("/admin", adminRoute);
+app.use("/admins", adminRoute);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose

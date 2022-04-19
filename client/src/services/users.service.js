@@ -2,21 +2,21 @@ import axios from "axios";
 
 class UserService {
   registerUser(user) {
-    return axios.post("/admin/create", user).then((response) => {
+    return axios.post("/admins/create", user).then((response) => {
       return response.data;
     });
   }
   getAllUsers(id) {
-    return axios.get(`/admin/all/${id}`);
+    return axios.get(`/admins/all/${id}`);
   }
   deleteUser(id) {
-    return axios.delete(`/admin/${id}`);
+    return axios.delete(`/admins/${id}`);
   }
   getUser(id) {
-    return axios.get(`/admin/${id}`);
+    return axios.get(`/admins/${id}`);
   }
   updateUser(id, user) {
-    return axios.put(`/admin/${id}`, user).then((response) => {
+    return axios.put(`/admins/${id}`, user).then((response) => {
       return response.data;
     });
   }
