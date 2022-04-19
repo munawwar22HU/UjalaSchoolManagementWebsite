@@ -2,7 +2,7 @@ import UserData from "../models/user.js";
 import bcrypt from "bcryptjs";
 import nodemailer from "nodemailer";
 
-export const createUser = async (req, res) => {
+export const createUser = (req, res) => {
   function generatePassword() {
     var length = 8,
       charset =
@@ -17,7 +17,7 @@ export const createUser = async (req, res) => {
   const { email, name, role, image } = req.body;
   const password = generatePassword();
   bcrypt.hash(password, 10).then((hashedpassword) => {
-    const user = await new UserData({
+    const user = new UserData({
       name,
       email,
       password: hashedpassword,
