@@ -16,9 +16,8 @@ export const createUser = async (req, res) => {
 
   const { email, name, role, image } = req.body;
   const password = generatePassword();
-  console.log(password);
   bcrypt.hash(password, 10).then((hashedpassword) => {
-    const user = new UserData({
+    const user = await new UserData({
       name,
       email,
       password: hashedpassword,
@@ -44,7 +43,7 @@ export const createUser = async (req, res) => {
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-          console.log(error);
+          res.status(409).json({ message: error.message });
         } else {
           console.log("Email sent: " + info.response);
           res.status(201).json(user);
