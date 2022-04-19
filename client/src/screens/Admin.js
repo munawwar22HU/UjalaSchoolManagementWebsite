@@ -24,9 +24,10 @@ export default function Admin(props) {
       ],
     },
   ];
-  const currentUser = AuthService.getCurrentUser();
 
   useEffect(() => {
+    const currentUser = AuthService.getCurrentUser();
+
     if (currentUser && currentUser.role === "Admin") {
       props.history.push("/admin/profile");
     } else {
