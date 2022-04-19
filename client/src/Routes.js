@@ -1,15 +1,25 @@
+// Authentication
 import Login from "./screens/Login.js";
-import Student from "./screens/Student.js";
+// User Profile
+import Profile from "./components/Profile.js";
+// Admin
 import Admin from "./screens/Admin";
-import StudentDashboard from "./components/Student/studentDashboard.js";
+import RegisterUser from "./components/Admin/registerUser.js";
+import UpdateUser from "./components/Admin/updateUser.js";
+import ManageUsers from "./components/Admin/mangeUsers.js";
+// Students
+import Student from "./screens/Student.js";
 import StudentDetails from "./components/Student/studentDetails.js";
 import StudentRegister from "./components/Student/studentRegister.js";
 import StudentUpdate from "./components/Student/studentUpdate";
-import ExternalOrganisation from "./components/Student/externalOrganisation";
-import ExternalOrganisationDetails from "./components/Student/externalOrganisationDetails";
-import HealthCard from "./components/Student/healthCard.js";
-import AdminDashboard from "./components/Admin/adminDashboard.js";
-import Profile from "./components/Profile.js";
+// Teachers
+import TeacherRegister from "./components/Teacher/teacherRegister.js";
+import TeacherDetails from "./components/Teacher/teacherDetails.js";
+import TeacherUpdate from "./components/Teacher/teacherUpdate.js";
+// Leaving Certificate
+import CertificateDetails from "./components/LeavingCertifcate/certificateDetails.js";
+import CertificateEdit from "./components/LeavingCertifcate/certificateEdit.js";
+import IssueCertificate from "./components/LeavingCertifcate/issueCertificate.js";
 
 const routes = [
   {
@@ -21,10 +31,6 @@ const routes = [
     path: "/student",
     component: Student,
     routes: [
-      {
-        path: "/student/dashboard",
-        component: StudentDashboard,
-      },
       {
         path: "/student/profile",
         component: Profile,
@@ -38,16 +44,28 @@ const routes = [
         component: StudentDetails,
       },
       {
-        path: "/student/add-external-organisation",
-        component: ExternalOrganisation,
+        path: "/student/add-teacher",
+        component: TeacherRegister,
       },
       {
-        path: "/student/manage-external-organisation",
-        component: ExternalOrganisationDetails,
+        path: "/student/manage-teacher",
+        component: TeacherDetails,
       },
       {
-        path: "/student/health-card",
-        component: HealthCard,
+        path: "/student/add-certificate",
+        component: IssueCertificate,
+      },
+      {
+        path: "/student/manage-certificate",
+        component: CertificateDetails,
+      },
+      {
+        path: "student/certificate/:id",
+        component: CertificateEdit,
+      },
+      {
+        path: "/student/teacher/:id",
+        component: TeacherUpdate,
       },
       {
         path: "/student/:id",
@@ -60,12 +78,20 @@ const routes = [
     component: Admin,
     routes: [
       {
-        path: "/admin/dashboard",
-        component: AdminDashboard,
-      },
-      {
         path: "/admin/profile",
         component: Profile,
+      },
+      {
+        path: "/admin/register-user",
+        component: RegisterUser,
+      },
+      {
+        path: "/admin/manage-users",
+        component: ManageUsers,
+      },
+      {
+        path: "/admin/:id",
+        component: UpdateUser,
       },
     ],
   },

@@ -68,3 +68,20 @@ export const getStudent = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export const updateStudent = async (req, res) => {
+  console.log("Update Student");
+  console.log(req.body);
+  try {
+    const id = req.params.id;
+    console.log(id);
+    await StudentData.findByIdAndUpdate(id, {
+      $set: req.body,
+    }).exec();
+    const user = await StudentData.findById(id, { _id: 0 });
+    res.status(200).json(user);
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};

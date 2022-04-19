@@ -10,6 +10,12 @@ export default function Profile(props) {
     id: "",
   });
 
+  const [password, updatePassword] = useState({
+    oldPassword: "",
+    newPassword: "",
+    retypePassword: "",
+  });
+
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
     if (!currentUser) {
@@ -75,6 +81,29 @@ export default function Profile(props) {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  // Updates password
+  const updatePasswordHandler = async (event) => {
+    event.preventDefault();
+    const currentUser = authService.getCurrentUser();
+    const { oldPassword, newPassword, retypePassword } = password;
+
+    const user = {
+      id: currentUser.id,
+      oldPassword,
+      newPassword,
+    };
+    axios
+      .post(`/auth/updatePassword`, user)
+      .then((res) => {
+        alert("Password updated successfully");
+        authService.logout();
+        props.history.push("/login");
+      })
+      .catch((error) => {
+        alert(error.response.data.message);
       });
   };
 
@@ -221,63 +250,103 @@ export default function Profile(props) {
                         </div>
                       </div>
                     </div>
-                    {/* /.tab-pane */}
-
-                    {/* /.tab-pane */}
                     <div className="tab-pane" id="settings">
                       <form className="form-horizontal">
-                        <div className="form-group row">
+                        <div className="form-group">
                           <label
-                            htmlFor="inputName"
+                            htmlFor="oldPassword"
                             className="col-sm-2 col-form-label"
                           >
                             Old Password
                           </label>
                           <div className="col-sm-10">
                             <input
-                              type="email"
+                              type="password"
                               className="form-control"
-                              id="inputName"
-                              placeholder="Name"
+                              id="oldPassword"
+                              placeholder="Old Password"
+                              value={password.oldPassword}
+                              onChange={(e) => {
+                                updatePassword({
+                                  ...password,
+                                  oldPassword: e.target.value,
+                                });
+                              }}
                             />
                           </div>
                         </div>
-                        <div className="form-group row">
+                        <div className="form-group">
                           <label
-                            htmlFor="inputEmail"
+                            htmlFor="newPassword"
                             className="col-sm-2 col-form-label"
                           >
                             New Password
                           </label>
                           <div className="col-sm-10">
                             <input
-                              type="email"
+                              type="password"
                               className="form-control"
-                              id="inputEmail"
-                              placeholder="Email"
+                              id="newPassword"
+                              placeholder="New Password"
+                              value={password.newPassword}
+                              onChange={(e) => {
+                                updatePassword({
+                                  ...password,
+                                  newPassword: e.target.value,
+                                });
+                              }}
                             />
                           </div>
                         </div>
-                        <div className="form-group row">
+                        <div className="form-group">
                           <label
-                            htmlFor="inputName2"
+                            htmlFor="retypePassword"
                             className="col-sm-2 col-form-label"
                           >
                             Retype New Password
                           </label>
                           <div className="col-sm-10">
                             <input
-                              type="text"
+                              type="password"
                               className="form-control"
-                              id="inputName2"
-                              placeholder="Name"
+                              id="retypePassword"
+                              placeholder="Retype New Password"
+                              value={password.retypePassword}
+                              onChange={(e) => {
+                                updatePassword({
+                                  ...password,
+                                  retypePassword: e.target.value,
+                                });
+                              }}
                             />
                           </div>
                         </div>
 
-                        <div className="form-group row">
-                          <div className="offset-sm-2 col-sm-10">
-                            <button type="submit" className="btn btn-danger">
+                        <div className="form-group">
+                          {password.newPassword === password.retypePassword ? (
+                            <span className="text-success">
+                              <i className="fas fa-check-circle" />
+                              Password match
+                            </span>
+                          ) : (
+                            <span className="text-danger">
+                              <i className="fas fa-check-circle" />
+                              Password not match
+                            </span>
+                          )}
+                        </div>
+                        <div className="form-group">
+                          <div className="col-sm-10">
+                            <button
+                              type="submit"
+                              className="btn btn-danger"
+                              disabled={
+                                password.newPassword === password.retypePassword
+                                  ? false
+                                  : true
+                              }
+                              onClick={updatePasswordHandler}
+                            >
                               Submit
                             </button>
                           </div>

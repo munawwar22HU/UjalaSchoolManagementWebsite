@@ -6,7 +6,7 @@ import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import StudentService from "../../services/student.service";
 import axios from "axios";
-export default function StudentUpdate(props) {
+export default function CertificateUpdate(props) {
   const [student, setStudent] = useState({
     name: "",
     sex: "Sex",
@@ -49,6 +49,10 @@ export default function StudentUpdate(props) {
       name: "Submit",
     },
   ];
+
+  const customOnchange = (event, key) => {
+    setStudent({ ...student, key: event.target.value });
+  };
 
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
@@ -127,27 +131,6 @@ export default function StudentUpdate(props) {
     stepper.previous();
   };
 
-  const updateStudent = (event) => {
-    event.preventDefault();
-    const id = props.match.params.id;
-    StudentService.updateStudent(id, student).then(
-      () => {
-        alert("Student Updated Successfully");
-        window.location.reload();
-        
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        console.log(resMessage);
-        setMesagge({ ...message, text: resMessage });
-      }
-    );
-  };
   return (
     <div className="content-wrapper">
       {/* Content Header (Page header) Start */}
@@ -544,9 +527,8 @@ export default function StudentUpdate(props) {
                         className="btn btn-primary"
                         style={{ margin: 5 }}
                         type="button"
-                        onClick={updateStudent}
                       >
-                        Update
+                        Submit
                       </button>
                     </div>
                   </div>

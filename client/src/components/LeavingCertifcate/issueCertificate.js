@@ -6,7 +6,7 @@ import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import StudentService from "../../services/student.service";
 import axios from "axios";
-export default function StudentUpdate(props) {
+export default function IssueCertificate(props) {
   const [student, setStudent] = useState({
     name: "",
     sex: "Sex",
@@ -30,25 +30,6 @@ export default function StudentUpdate(props) {
     fatherOccupation: "",
     image: "",
   });
-
-  const headers = [
-    {
-      target: "#student-part",
-      name: "Student Information",
-    },
-    {
-      target: "#mother-part",
-      name: "Mother Information",
-    },
-    {
-      target: "#father-part",
-      name: "Father Information",
-    },
-    {
-      target: "#upload-part",
-      name: "Submit",
-    },
-  ];
 
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
@@ -92,6 +73,25 @@ export default function StudentUpdate(props) {
     console.log("url is", student.image);
   };
 
+  const headers = [
+    {
+      target: "#student-part",
+      name: "Student Information",
+    },
+    {
+      target: "#mother-part",
+      name: "Mother Information",
+    },
+    {
+      target: "#father-part",
+      name: "Father Information",
+    },
+    {
+      target: "#upload-part",
+      name: "Submit",
+    },
+  ];
+
   useEffect(() => {
     const stepperEl = document.querySelector("#stepper1");
     setStepper(
@@ -99,23 +99,6 @@ export default function StudentUpdate(props) {
         linear: false,
         animation: true,
       })
-    );
-    const id = props.match.params.id;
-    StudentService.getStudent(id).then(
-      (response) => {
-        setStudent(response.data);
-        console.log(student);
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-        console.log(resMessage);
-        setMesagge({ ...message, text: resMessage });
-      }
     );
   }, []);
 
@@ -127,14 +110,10 @@ export default function StudentUpdate(props) {
     stepper.previous();
   };
 
-  const updateStudent = (event) => {
-    event.preventDefault();
-    const id = props.match.params.id;
-    StudentService.updateStudent(id, student).then(
+  const createStudent = () => {
+    StudentService.registerStudent(student).then(
       () => {
-        alert("Student Updated Successfully");
-        window.location.reload();
-        
+        props.history.push("/student/manage-student");
       },
       (error) => {
         const resMessage =
@@ -157,16 +136,16 @@ export default function StudentUpdate(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Update Student </h1>
+              <h1> Register Student </h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/student"> Home </a>
+                  <a href="/home"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Update Student </li>
+                <li className="breadcrumb-item active"> Register Student </li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -183,14 +162,16 @@ export default function StudentUpdate(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Edit - Student </h3>
+                <h3 className="card-title"> Add - Student </h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}
               <div className="card-body p-0">
                 <div className="bs-stepper" id="stepper1">
-                  {/*Header*/}
+                  {/* BS - STEPPER HEADER Start */}
                   <StepperHeader headers={headers} />
+                  {/* BS - STEPPER HEADER End */}
+                  {/* BS - STEPPER CONTENT Start */}
                   <div className="bs-stepper-content">
                     {/* Student Information*/}
                     <div id="student-part" className="content" role="tabpanel">
@@ -201,6 +182,12 @@ export default function StudentUpdate(props) {
                             placeholder={"Full Name"}
                             value={student.name}
                             name={"Name"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                name: event.target.value,
+                              })
+                            }
                           />
                           {/* Sex */}
                           <StepperSelect
@@ -544,9 +531,9 @@ export default function StudentUpdate(props) {
                         className="btn btn-primary"
                         style={{ margin: 5 }}
                         type="button"
-                        onClick={updateStudent}
+                        onClick={createStudent}
                       >
-                        Update
+                        Submit
                       </button>
                     </div>
                   </div>

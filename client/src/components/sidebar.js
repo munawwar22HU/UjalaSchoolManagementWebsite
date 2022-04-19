@@ -10,6 +10,7 @@ export default function Sidebar({ routes }) {
 
   useEffect(() => {
     const currentUser = authService.getCurrentUser();
+    console.log(routes);
     if (!currentUser) {
       window.location.href = "/login";
     } else {
@@ -69,12 +70,25 @@ export default function Sidebar({ routes }) {
               role="menu"
               data-accordion="false"
             >
-              {routes.map((route, i) => (
-                <li className="nav-item" key={i}>
-                  <Link to={route.to} className="nav-link">
-                    <i className={route.class} />
-                    <p>{route.name}</p>
+              {routes.map((header, index) => (
+                <li className="nav-item menu-is-opening menu-open" key={index}>
+                  <Link hr className="nav-link active">
+                    <i className={header.class} />
+                    <p>
+                      {header.name}
+                      <i className="right fas fa-angle-left" />
+                    </p>
                   </Link>
+                  <ul className="nav nav-treeview" style={{ display: "block" }}>
+                    {header.routes.map((route, i) => (
+                      <li className="nav-item" key={i}>
+                        <Link to={route.to} className="nav-link">
+                          <i className={route.class} />
+                          <p>{route.name}</p>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>

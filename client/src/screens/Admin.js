@@ -8,14 +8,20 @@ import { Switch } from "react-router-dom";
 export default function Admin(props) {
   const routes = [
     {
-      to: "/admin/dashboard",
-      class: "nav-icon fas fa-tachometer-alt",
-      name: "Dashboard",
-    },
-    {
-      to: "/admin/dashboard",
-      class: "nav-icon fas fa-tachometer-alt",
-      name: "Dashboard",
+      name: "Users",
+      class: "nav-icon fas fa-users",
+      routes: [
+        {
+          to: "/admin/register-user",
+          class: "nav-icon fas fa-user-plus",
+          name: "Register User",
+        },
+        {
+          to: "/admin/manage-users",
+          class: "nav-icon fas fa-user-edit",
+          name: "Manage Users",
+        },
+      ],
     },
   ];
   const currentUser = AuthService.getCurrentUser();
