@@ -12,7 +12,7 @@ export default function StudentDetails(props) {
 
   const updateStudent = (id) => {
     console.log(id);
-    props.history.push("/student/" + id);
+    props.history.push("/student/students/" + id);
   };
 
   const deleteStudent = (id) => {
@@ -62,6 +62,10 @@ export default function StudentDetails(props) {
         {
           Header: "Roll Number",
           accessor: "rollNumber",
+        },
+        {
+          Header: "Class",
+          accessor: "class",
         },
         {
           Header: "Sex",

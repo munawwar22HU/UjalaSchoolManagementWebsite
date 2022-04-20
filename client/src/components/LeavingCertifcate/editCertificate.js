@@ -7,7 +7,7 @@ import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import StudentService from "../../services/student.service";
 import AuthService from "../../services/auth.service";
 import CertificateService from "../../services/certificates.service.js";
-export default function CertificateRegister(props) {
+export default function CertificateUpdate(props) {
   const [student, setStudent] = useState({
     studentId: "",
     studentName: "",
@@ -23,7 +23,6 @@ export default function CertificateRegister(props) {
     text: "",
   });
 
-  const [studentList, setStudentList] = useState([]);
 
   const headers = [
     {
@@ -40,59 +39,33 @@ export default function CertificateRegister(props) {
         animation: true,
       })
     );
-    // Create an array of student roll numbers only
-    StudentService.getAllStudents().then((res) => {
-      const rollNumbers = res.data.map((student) => student.rollNumber);
-      setStudentList(rollNumbers);
-
-      const date = new Date();
-
-      // ✅ Reset a Date's time to midnight
-      date.setHours(0, 0, 0, 0);
-
-      // ✅ Format a date to YYYY-MM-DD (or any other format)
-      function padTo2Digits(num) {
-        return num.toString().padStart(2, "0");
+    const id = props.match.params.id;
+   CertificateService.getCertificate(id).then(
+      (response) => {
+        setStudent(response.data);
+        console.log(student);
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        console.log(resMessage);
+        setMesagge({ ...message, text: resMessage });
       }
-
-      function formatDate(date) {
-        return [
-          date.getFullYear(),
-          padTo2Digits(date.getMonth() + 1),
-          padTo2Digits(date.getDate()),
-        ].join("-");
-      }
-      const currentUser = AuthService.getCurrentUser();
-      setStudent({
-        ...student,
-        rollNumber: res.data[0].rollNumber,
-        studentId: res.data[0]._id,
-        studentName: res.data[0].name,
-        approvedDate: formatDate(date),
-        approvedByName: currentUser.name,
-        approvedById: currentUser.id,
-      });
-    });
+    );
   }, []);
-  const updateState = (rollNumber) => {
-    StudentService.getAllStudents().then((res) => {
-      const data = res.data.filter((temp) => {
-        return temp.rollNumber == rollNumber.toString();
-      });
-      setStudent({
-        ...student,
-        studentId: data[0]._id,
-        studentName: data[0].name,
-        rollNumber: data[0].rollNumber,
-      });
-      console.log(student);
-    });
-  };
 
-  const createStudent = () => {
-    CertificateService.registerCertificate(student).then(
+
+  const updateCertificate = (event) => {
+    event.preventDefault();
+    const id = props.match.params.id;
+    CertificateService.updateCertificate(id, student).then(
       () => {
-        props.history.push("/student/manage-certificate");
+        alert("Student Updated Successfully");
+        window.location.reload();
       },
       (error) => {
         const resMessage =
@@ -106,10 +79,7 @@ export default function CertificateRegister(props) {
       }
     );
   };
-  const handleSelect = (event) => {
-    const { value } = event.target;
-    updateState(value);
-  };
+ 
 
   return (
     <div className="content-wrapper">
@@ -161,11 +131,10 @@ export default function CertificateRegister(props) {
                     <div id="student-part" className="content" role="tabpanel">
                       <div className="row">
                         <div className="col-md-6">
-                          <StepperSelect
-                            name={"Roll Number"}
+                        <StepperContent
+                            placeholder={"Roll Number"}
                             value={student.rollNumber}
-                            options={studentList}
-                            onChange={handleSelect}
+                            name={"Roll Number"}
                           />
                           {/* Name */}
                           <StepperContent
@@ -211,9 +180,10 @@ export default function CertificateRegister(props) {
                         className="btn btn-primary"
                         style={{ margin: 5 }}
                         type="button"
-                        onClick={createStudent}
+                        onClick={updateCertificate}
+                     
                       >
-                        Submit
+                        Update
                       </button>
                     </div>
                   </div>

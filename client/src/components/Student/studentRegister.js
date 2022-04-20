@@ -29,6 +29,7 @@ export default function StudentRegister(props) {
     fatherAddress: "",
     fatherOccupation: "",
     image: "",
+    class: "",
   });
 
   const [stepper, setStepper] = useState(0);
@@ -480,6 +481,17 @@ export default function StudentRegister(props) {
                     <div id="upload-part" className="content" role="tabpanel">
                       <div className="row">
                         <div className="col-md-6">
+                          <StepperSelect
+                            name={"Class"}
+                            value={student.class}
+                            options={["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                class: event.target.value,
+                              })
+                            }
+                          />
                           <div className="form-group">
                             <label> File input </label>
                             <div className="input-group">

@@ -18,8 +18,8 @@ import TeacherDetails from "./components/Teacher/teacherDetails.js";
 import TeacherUpdate from "./components/Teacher/teacherUpdate.js";
 // Leaving Certificate
 import CertificateDetails from "./components/LeavingCertifcate/certificateDetails.js";
-import CertificateEdit from "./components/LeavingCertifcate/certificateEdit.js";
-import IssueCertificate from "./components/LeavingCertifcate/issueCertificate.js";
+import CertificateUpdate from "./components/LeavingCertifcate/editCertificate.js";
+import CertificateRegister from "./components/LeavingCertifcate/issueCertificate";
 
 const routes = [
   {
@@ -35,6 +35,7 @@ const routes = [
         path: "/student/profile",
         component: Profile,
       },
+
       {
         path: "/student/add-student",
         component: StudentRegister,
@@ -53,23 +54,24 @@ const routes = [
       },
       {
         path: "/student/add-certificate",
-        component: IssueCertificate,
+        component: CertificateRegister,
       },
       {
         path: "/student/manage-certificate",
         component: CertificateDetails,
       },
-      {
-        path: "student/certificate/:id",
-        component: CertificateEdit,
-      },
+
       {
         path: "/student/teacher/:id",
         component: TeacherUpdate,
       },
       {
-        path: "/student/:id",
+        path: "/student/students/:id",
         component: StudentUpdate,
+      },
+      {
+        path: "/student/new/:id",
+        component: CertificateUpdate,
       },
     ],
   },

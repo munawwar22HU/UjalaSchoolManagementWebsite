@@ -36,6 +36,7 @@ export const getStudents = async (req, res) => {
         address: 1,
         contactNumber: 1,
         rollNumber: 1,
+        class: 1,
         status: 1,
         image: 1,
       }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import DataTable from "../dataTable.js";
-import studentService from "../../services/student.service.js";
+import CertificateService from "../../services/certificates.service";
 
 export default function CertificateDetails(props) {
   const [studentsList, setStudentList] = useState([]);
@@ -10,17 +10,17 @@ export default function CertificateDetails(props) {
     text: "",
   });
 
-  const updateStudent = (id) => {
+  const updateCertificate = (id) => {
     console.log(id);
-    props.history.push("/student/certificate/" + id);
+    props.history.push("/student/new/" + id);
   };
 
-  const deleteStudent = (id) => {
+  const deleteCertificate = (id) => {
     const confirmBox = window.confirm(
-      "Do you really want to delete this Student ?"
+      "Do you really want to delete this Certificate ?"
     );
     if (confirmBox === true) {
-      studentService.deleteStudent(id).then(
+      CertificateService.deleteCertificate(id).then(
         () => {
           rerender(dummyState + 1);
         },
@@ -44,42 +44,24 @@ export default function CertificateDetails(props) {
       columns: [
         {
           Header: "Name",
-          accessor: "name",
-        },
-        {
-          Header: " Image",
-          accessor: "image",
-          Cell: (row) => (
-            <div>
-              <img
-                className="profile-user-img img-circle"
-                src={row.row.original.image}
-                alt="User profile "
-              />
-            </div>
-          ),
+          accessor: "studentName",
         },
         {
           Header: "Roll Number",
           accessor: "rollNumber",
         },
         {
-          Header: "Sex",
-          accessor: "sex",
+          Header: "Reason",
+          accessor: "reason",
           disableSortBy: true,
         },
         {
-          Header: "Address",
-          accessor: "address",
-          disableSortBy: true,
+          Header: "Approved By",
+          accessor: "approvedByName",
         },
         {
-          Header: "Contact Number",
-          accessor: "contactNumber",
-        },
-        {
-          Header: "Status",
-          accessor: "status",
+          Header: "Date of Appproval",
+          accessor: "approvedDate",
           disableSortBy: true,
         },
         {
@@ -89,7 +71,7 @@ export default function CertificateDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => updateStudent(row.row.original._id)}>
+              <button onClick={(e) => updateCertificate(row.row.original._id)}>
                 <i className="fas fa-user-edit" aria-hidden="true" />
               </button>
             </div>
@@ -102,7 +84,7 @@ export default function CertificateDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => deleteStudent(row.row.original._id)}>
+              <button onClick={(e) => deleteCertificate(row.row.original._id)}>
                 <i className="fas fa-trash-alt" aria-hidden="true" />
               </button>
             </div>
@@ -114,7 +96,7 @@ export default function CertificateDetails(props) {
 
   useEffect(() => {
     console.log("dummyState's state has updated to: " + dummyState);
-    studentService.getAllStudents().then(
+    CertificateService.getAllCertificates().then(
       (response) => {
         setStudentList(response.data);
         console.log(response.data);
