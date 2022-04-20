@@ -422,7 +422,7 @@ export default function StudentRegister(props) {
                           {/* Address */}
                           <StepperTextArea
                             name={"Permenant Address"}
-                            value={student.fatherAddressAddress}
+                            value={student.fatherAddress}
                             rows={4}
                             placeholder={"Permenant Address"}
                             onChange={(event) =>
