@@ -7,6 +7,7 @@ import authRoutes from "./app/routes/auth.js";
 import studentRoutes from "./app/routes/student.js";
 import cloudinaryRoutes from "./app/routes/cloudinary.js";
 import adminRoute from "./app/routes/admin.js";
+import teacherRoute from "./app/routes/teacher.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -25,6 +26,7 @@ app.use("/auth", authRoutes);
 app.use("/students", studentRoutes);
 app.use("/cloudinary", cloudinaryRoutes);
 app.use("/admins", adminRoute);
+app.use("/teachers", teacherRoute);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose

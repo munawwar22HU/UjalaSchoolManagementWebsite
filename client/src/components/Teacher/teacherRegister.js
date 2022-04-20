@@ -4,31 +4,21 @@ import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
 import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
-import StudentService from "../../services/student.service";
+import TeacherService from "../../services/teacher.service";
 import axios from "axios";
 export default function TeacherRegister(props) {
-  const [student, setStudent] = useState({
+  const [teacher, setTeacher] = useState({
     name: "",
     sex: "Sex",
     dateOfBirth: "",
-    religion: "",
     address: "",
     contactNumber: "",
     email: "",
-    registrationNumber: "",
-    dateOfAdmission: "",
+    dateOfJoining: "",
+    class: "Class",
     previousSchool: "",
-    motherName: "",
-    motherCNIC: "",
-    motherContactNumber: "",
-    motherAddress: "",
-    motherOccupation: "",
-    fatherName: "",
-    fatherCNIC: "",
-    fatherContactNumber: "",
-    fatherAddress: "",
-    fatherOccupation: "",
-    image: "",
+    qualification: "",
+    image: "https://res.cloudinary.com/doow2fp6w/image/upload/v1650314984/uqsv76s8cag9pqmwzvd9.png",
   });
 
   const [stepper, setStepper] = useState(0);
@@ -64,27 +54,23 @@ export default function TeacherRegister(props) {
       data: formData,
     })
       .then(function (res) {
-        setStudent({ ...student, image: res.data.url });
+        setTeacher({ ...teacher, image: res.data.url });
       })
       .catch(function (err) {
         console.error(err);
       });
 
-    console.log("url is", student.image);
+    console.log("url is", teacher.image);
   };
 
   const headers = [
     {
       target: "#student-part",
-      name: "Student Information",
+      name: "Personal Information",
     },
     {
       target: "#mother-part",
-      name: "Mother Information",
-    },
-    {
-      target: "#father-part",
-      name: "Father Information",
+      name: "Background Information",
     },
     {
       target: "#upload-part",
@@ -110,10 +96,10 @@ export default function TeacherRegister(props) {
     stepper.previous();
   };
 
-  const createStudent = () => {
-    StudentService.registerStudent(student).then(
+  const createTeacher = () => {
+    TeacherService.registerTeacher(teacher).then(
       () => {
-        props.history.push("/student/manage-student");
+        props.history.push("/student/manage-teacher");
       },
       (error) => {
         const resMessage =
@@ -136,7 +122,7 @@ export default function TeacherRegister(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Register Student </h1>
+              <h1> Register Teacher </h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
@@ -145,7 +131,7 @@ export default function TeacherRegister(props) {
                 <li className="breadcrumb-item">
                   <a href="/home"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Register Student </li>
+                <li className="breadcrumb-item active"> Register Teacher </li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -162,7 +148,7 @@ export default function TeacherRegister(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Add - Student </h3>
+                <h3 className="card-title"> Add - Teacher </h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}
@@ -180,11 +166,11 @@ export default function TeacherRegister(props) {
                           {/* Name */}
                           <StepperContent
                             placeholder={"Full Name"}
-                            value={student.name}
+                            value={teacher.name}
                             name={"Name"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
+                              setTeacher({
+                                ...teacher,
                                 name: event.target.value,
                               })
                             }
@@ -192,11 +178,11 @@ export default function TeacherRegister(props) {
                           {/* Sex */}
                           <StepperSelect
                             name={"Sex"}
-                            value={student.sex}
+                            value={teacher.sex}
                             options={["Sex", "Male", "Female", "Other"]}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
+                              setTeacher({
+                                ...teacher,
                                 sex: event.target.value,
                               })
                             }
@@ -204,36 +190,12 @@ export default function TeacherRegister(props) {
                           {/*Date Of Birth*/}
                           <StepperContent
                             name={"Date Of Birth"}
-                            value={student.dateOfBirth}
+                            value={teacher.dateOfBirth}
                             placeholder={"DD-MM-YYYY"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
+                              setTeacher({
+                                ...teacher,
                                 dateOfBirth: event.target.value,
-                              })
-                            }
-                          />
-                          {/*Religion*/}
-                          <StepperContent
-                            name={"Religion"}
-                            value={student.religion}
-                            placeholder={"Religion"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                religion: event.target.value,
-                              })
-                            }
-                          />
-                          {/*Previous School*/}
-                          <StepperContent
-                            name={"Previous School"}
-                            value={student.previousSchool}
-                            placeholder={"Previous School"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                previousSchool: event.target.value,
                               })
                             }
                           />
@@ -242,12 +204,12 @@ export default function TeacherRegister(props) {
                           {/* Address */}
                           <StepperTextArea
                             name={"Address"}
-                            value={student.address}
+                            value={teacher.address}
                             rows={1}
                             placeholder={"Address"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
+                              setTeacher({
+                                ...teacher,
                                 address: event.target.value,
                               })
                             }
@@ -255,11 +217,11 @@ export default function TeacherRegister(props) {
                           {/* Contact Number */}
                           <StepperContent
                             name={"Contact Number"}
-                            value={student.contactNumber}
+                            value={teacher.contactNumber}
                             placeholder={"Contact Number"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
+                              setTeacher({
+                                ...teacher,
                                 contactNumber: event.target.value,
                               })
                             }
@@ -267,36 +229,12 @@ export default function TeacherRegister(props) {
                           {/* Email  Address */}
                           <StepperContent
                             name={"Email Address"}
-                            value={student.email}
+                            value={teacher.email}
                             placeholder={"Email Address"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
+                              setTeacher({
+                                ...teacher,
                                 email: event.target.value,
-                              })
-                            }
-                          />
-                          {/* Registration Number */}
-                          <StepperContent
-                            name={"Registration Number"}
-                            value={student.registrationNumber}
-                            placeholder={"Registration Number"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                registrationNumber: event.target.value,
-                              })
-                            }
-                          />
-                          {/* Date of Admission */}
-                          <StepperContent
-                            name={"Date of Admission"}
-                            value={student.dateOfAdmission}
-                            placeholder={"Date of Addmission"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                dateOfAdmission: event.target.value,
                               })
                             }
                           />
@@ -312,64 +250,51 @@ export default function TeacherRegister(props) {
                         <div className="col-md-6">
                           {/* Name */}
                           <StepperContent
-                            name={"Full Name"}
-                            value={student.motherName}
-                            placeholder={"Full Name"}
+                            name={"Previous School"}
+                            value={teacher.previousSchool}
+                            placeholder={"Previous School"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                motherName: event.target.value,
+                              setTeacher({
+                                ...teacher,
+                                previousSchool: event.target.value,
                               })
                             }
                           />
                           {/* CNIC */}
                           <StepperContent
-                            name={"CNIC"}
-                            value={student.motherCNIC}
-                            placeholder={"CNIC"}
+                            name={"Qualification"}
+                            value={teacher.qualification}
+                            placeholder={"Qualification"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                motherCNIC: event.target.value,
-                              })
-                            }
-                          />
-                          {/* Address */}
-                          <StepperTextArea
-                            name={"Permenant Address"}
-                            value={student.motherAddress}
-                            rows={4}
-                            placeholder={"Permenant Address"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                motherAddress: event.target.value,
+                              setTeacher({
+                                ...teacher,
+                                qualification: event.target.value,
                               })
                             }
                           />
                         </div>
                         <div className="col-md-6">
                           {/* Contact Number */}
-                          <StepperContent
-                            name={"Contact Number"}
-                            value={student.motherContactNumber}
-                            placeholder={"Contact Number"}
+                          <StepperSelect
+                            name={"Class"}
+                            value={teacher.class}
+                            options={["Class", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                motherContactNumber: event.target.value,
+                              setTeacher({
+                                ...teacher,
+                                class: event.target.value,
                               })
                             }
                           />
                           {/* Occupation */}
                           <StepperContent
-                            name={"Occupation"}
-                            value={student.motherOccupation}
-                            placeholder={"Occupation"}
+                            name={"Date Of Joining"}
+                            value={teacher.dateOfJoining}
+                            placeholder={"Date Of Joining"}
                             onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                motherOccupation: event.target.value,
+                              setTeacher({
+                                ...teacher,
+                                dateOfJoining: event.target.value,
                               })
                             }
                           />
@@ -391,91 +316,7 @@ export default function TeacherRegister(props) {
                         Next
                       </button>
                     </div>
-                    {/* Father Information*/}
-                    <div id="father-part" className="content" role="tabpanel">
-                      <div className="row">
-                        <div className="col-md-6">
-                          {/* Name */}
-                          <StepperContent
-                            name={"Full Name"}
-                            value={student.fatherName}
-                            placeholder={"Full Name"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                fatherName: event.target.value,
-                              })
-                            }
-                          />
-                          {/* CNIC */}
-                          <StepperContent
-                            name={"CNIC"}
-                            value={student.fatherCNIC}
-                            placeholder={"CNIC"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                fatherCNIC: event.target.value,
-                              })
-                            }
-                          />
-                          {/* Address */}
-                          <StepperTextArea
-                            name={"Permenant Address"}
-                            value={student.fatherAddressAddress}
-                            rows={4}
-                            placeholder={"Permenant Address"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                fatherAddress: event.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                        <div className="col-md-6">
-                          {/* Contact Number */}
-                          <StepperContent
-                            name={"Contact Number"}
-                            value={student.fatherContactNumber}
-                            placeholder={"Contact Number"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                fatherContactNumber: event.target.value,
-                              })
-                            }
-                          />
-                          {/* Occupation */}
-                          <StepperContent
-                            name={"Occupation"}
-                            value={student.fatherOccupation}
-                            placeholder={"Occupation"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                fatherOccupation: event.target.value,
-                              })
-                            }
-                          />
-                        </div>
-                      </div>
-                      <button
-                        className="btn btn-primary"
-                        onClick={previousStepper}
-                        style={{ margin: 5 }}
-                      >
-                        Previous
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={nextStepper}
-                        style={{ margin: 5 }}
-                      >
-                        Next
-                      </button>
-                    </div>
+
                     {/* Upload Information*/}
                     <div id="upload-part" className="content" role="tabpanel">
                       <div className="row">
@@ -512,7 +353,7 @@ export default function TeacherRegister(props) {
                             <div className="text-center">
                               <img
                                 className="profile-user-img img-circle"
-                                src={student.image}
+                                src={teacher.image}
                                 alt="User profile picture"
                                 style={{ width: 300, height: 300 }}
                               />
@@ -531,7 +372,7 @@ export default function TeacherRegister(props) {
                         className="btn btn-primary"
                         style={{ margin: 5 }}
                         type="button"
-                        onClick={createStudent}
+                        onClick={createTeacher}
                       >
                         Submit
                       </button>
