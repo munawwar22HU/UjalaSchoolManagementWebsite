@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import DataTable from "../dataTable.js";
 import studentService from "../../services/student.service.js";
 
@@ -11,7 +10,6 @@ export default function StudentDetails(props) {
   });
 
   const updateStudent = (id) => {
-    console.log(id);
     props.history.push("/student/students/" + id);
   };
 
@@ -93,7 +91,7 @@ export default function StudentDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => updateStudent(row.row.original._id)}>
+              <button onChange={(e) => updateStudent(row.row.original._id)}>
                 <i className="fas fa-user-edit" aria-hidden="true" />
               </button>
             </div>
@@ -106,7 +104,7 @@ export default function StudentDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => deleteStudent(row.row.original._id)}>
+              <button onChange={(e) => deleteStudent(row.row.original._id)}>
                 <i className="fas fa-trash-alt" aria-hidden="true" />
               </button>
             </div>
@@ -117,7 +115,6 @@ export default function StudentDetails(props) {
   ];
 
   useEffect(() => {
-    console.log("dummyState's state has updated to: " + dummyState);
     studentService.getAllStudents().then(
       (response) => {
         setStudentList(response.data);

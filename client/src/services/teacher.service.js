@@ -2,10 +2,13 @@ import axios from "axios";
 import authHeader from "./auth-header.js";
 
 class TeacherService {
-  registerTeacher(Teacher) {
-    return axios.post("/Teachers", Teacher).then((response) => {
-      return response.data;
-    });
+  // registerTeacher(Teacher) {
+  //   return axios.post("/Teachers", Teacher).then((response) => {
+  //     return response.data;
+  //   });
+  // }
+  registerTeacher(teacher) {
+    return axios.post("/teachers", teacher, { headers: authHeader() });
   }
 
   getAllTeachers() {

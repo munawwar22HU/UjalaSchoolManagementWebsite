@@ -1,3 +1,4 @@
+import leaveCertificate from "../models/leaveCertificate.js";
 import LeaveCertificateData from "../models/leaveCertificate.js";
 import StudentData from "../models/student.js";
 export const registerLeaveCertificate = async (req, res) => {
@@ -47,7 +48,10 @@ export const getCertificate = async (req, res) => {
   console.log(req.params);
   try {
     const id = req.params.id;
-    const singleCertificate = await LeaveCertificateData.findById(id);
+    const singleCertificate = await LeaveCertificateData.findById(id, {
+      _id: 0,
+      __v: 0,
+    });
 
     res.status(200).json(singleCertificate);
   } catch (error) {
@@ -56,9 +60,7 @@ export const getCertificate = async (req, res) => {
 };
 
 export const deleteCertificate = async (req, res) => {
-  
   try {
- 
     const id = req.params.id;
     const certficate = await LeaveCertificateData.findById(id);
     const studentId = certficate.studentId;
@@ -73,17 +75,17 @@ export const deleteCertificate = async (req, res) => {
   }
 };
 export const updateCertificate = async (req, res) => {
-    console.log("Update Certificate");
-    try {
-      const id = req.params.id;
-      console.log(id);
-      await LeaveCertificateData.findByIdAndUpdate(id, {
-        $set: req.body,
-      }).exec();
-      const certficate = await LeaveCertificateData.findById(id, { _id: 0 });
-      res.status(200).json(certficate);
-      return;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  console.log("Update Certificate");
+  try {
+    const id = req.params.id;
+    console.log(id);
+    await LeaveCertificateData.findByIdAndUpdate(id, {
+      $set: req.body,
+    }).exec();
+    const certficate = await LeaveCertificateData.findById(id);
+    res.status(200).json(certficate);
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};

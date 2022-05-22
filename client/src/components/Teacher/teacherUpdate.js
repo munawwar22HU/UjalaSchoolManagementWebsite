@@ -4,6 +4,7 @@ import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
 import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
+import StepperDate from "../Common/Stepper/stepperDate";
 import TeacherService from "../../services/teacher.service";
 import axios from "axios";
 export default function TeacherUpdate(props) {
@@ -35,6 +36,7 @@ export default function TeacherUpdate(props) {
     },
   ];
 
+  const [dummyState, rerender] = React.useState(1);
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
     text: "",
@@ -99,7 +101,7 @@ export default function TeacherUpdate(props) {
         setMesagge({ ...message, text: resMessage });
       }
     );
-  }, []);
+  }, [dummyState]);
 
   const nextStepper = () => {
     stepper.next();
@@ -115,7 +117,8 @@ export default function TeacherUpdate(props) {
     TeacherService.updateTeacher(id, teacher).then(
       () => {
         alert("Teacher Updated Successfully");
-        window.location.reload();
+        props.history.push(`/student/teacher/${id}`);
+        rerender(dummyState + 1);
       },
       (error) => {
         const resMessage =
@@ -201,15 +204,13 @@ export default function TeacherUpdate(props) {
                               })
                             }
                           />
-                          {/*Date Of Birth*/}
-                          <StepperContent
+                          <StepperDate
                             name={"Date Of Birth"}
                             value={teacher.dateOfBirth}
-                            placeholder={"DD-MM-YYYY"}
                             onChange={(event) =>
                               setTeacher({
                                 ...teacher,
-                                dateOfBirth: event.target.value,
+                                dateOfBirth: event.target.value.toString(),
                               })
                             }
                           />
@@ -292,7 +293,19 @@ export default function TeacherUpdate(props) {
                           <StepperSelect
                             name={"Class"}
                             value={teacher.class}
-                            options={["Sex", "Male", "Female", "Other"]}
+                            options={[
+                              "Class",
+                              "One",
+                              "Two",
+                              "Three",
+                              "Four",
+                              "Five",
+                              "Six",
+                              "Seven",
+                              "Eight",
+                              "Nine",
+                              "Ten",
+                            ]}
                             onChange={(event) =>
                               setTeacher({
                                 ...teacher,
@@ -301,10 +314,9 @@ export default function TeacherUpdate(props) {
                             }
                           />
                           {/* Occupation */}
-                          <StepperContent
+                          <StepperDate
                             name={"Date Of Joining"}
                             value={teacher.dateOfJoining}
-                            placeholder={"Date Of Joining"}
                             onChange={(event) =>
                               setTeacher({
                                 ...teacher,

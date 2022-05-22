@@ -6,7 +6,7 @@ export const registerTeacher = async (req, res) => {
   try {
     savedTeacher.save();
 
-    res.status(201).send(savedTeacher);
+    res.status(201).send({ savedTeacher, id: savedTeacher._id });
   } catch (error) {
     res.status(409).send({ message: error.message });
   }

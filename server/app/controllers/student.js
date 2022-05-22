@@ -19,9 +19,20 @@ export const registerStudent = async (req, res) => {
   try {
     savedStudent.save();
 
-    res.status(201).send(savedStudent);
+    res.status(201).send({ student, id: savedStudent._id });
   } catch (error) {
     res.status(409).send({ message: error.message });
+  }
+};
+
+// get all Active Student
+export const getActiveStudents = async (req, res) => {
+  try {
+    const allStudents = await StudentData.find({ status: "active" });
+
+    res.status(200).json(allStudents);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };
 // get all Student
@@ -79,7 +90,7 @@ export const updateStudent = async (req, res) => {
     await StudentData.findByIdAndUpdate(id, {
       $set: req.body,
     }).exec();
-    const user = await StudentData.findById(id, { _id: 0 });
+    const user = await StudentData.findById(id);
     res.status(200).json(user);
     return;
   } catch (error) {

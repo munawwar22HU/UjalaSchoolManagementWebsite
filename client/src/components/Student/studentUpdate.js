@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Stepper from "bs-stepper";
 import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
@@ -50,6 +51,8 @@ export default function StudentUpdate(props) {
       name: "Submit",
     },
   ];
+
+  const [dummyState, rerender] = React.useState(1);
 
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
@@ -118,7 +121,7 @@ export default function StudentUpdate(props) {
         setMesagge({ ...message, text: resMessage });
       }
     );
-  }, []);
+  }, [dummyState]);
 
   const nextStepper = () => {
     stepper.next();
@@ -128,13 +131,17 @@ export default function StudentUpdate(props) {
     stepper.previous();
   };
 
+  let history = useHistory();
+
   const updateStudent = (event) => {
     event.preventDefault();
     const id = props.match.params.id;
+
     StudentService.updateStudent(id, student).then(
-      () => {
+      (response) => {
         alert("Student Updated Successfully");
-        window.location.reload();
+        history.push(`/student/students/${id}`);
+        rerender(dummyState + 1);
       },
       (error) => {
         const resMessage =
@@ -201,6 +208,12 @@ export default function StudentUpdate(props) {
                             placeholder={"Full Name"}
                             value={student.name}
                             name={"Name"}
+                            onChange={(event) =>
+                              setStudent({
+                                ...student,
+                                name: event.target.value,
+                              })
+                            }
                           />
                           {/* Sex */}
                           <StepperSelect
@@ -215,7 +228,7 @@ export default function StudentUpdate(props) {
                             }
                           />
                           {/*Date Of Birth*/}
-                          <StepperContent
+                          {/* <StepperContent
                             name={"Date Of Birth"}
                             value={student.dateOfBirth}
                             placeholder={"DD-MM-YYYY"}
@@ -225,7 +238,22 @@ export default function StudentUpdate(props) {
                                 dateOfBirth: event.target.value,
                               })
                             }
-                          />
+                          /> */}
+                          <div className="form-group">
+                            <label>Date Of Birth</label>
+                            <input
+                              type="date"
+                              className="form-control"
+                              placeholder="Date Of Birth"
+                              value={student.dateOfBirth}
+                              onChange={(event) =>
+                                setStudent({
+                                  ...student,
+                                  dateOfBirth: event.target.value.toString(),
+                                })
+                              }
+                            />
+                          </div>
                           {/*Religion*/}
                           <StepperContent
                             name={"Religion"}

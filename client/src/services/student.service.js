@@ -3,13 +3,14 @@ import authHeader from "./auth-header.js";
 
 class StudentService {
   registerStudent(student) {
-    return axios.post("/students", student).then((response) => {
-      return response.data;
-    });
+    return axios.post("/students", student, { headers: authHeader() });
   }
 
   getAllStudents() {
     return axios.get("/students", { headers: authHeader() });
+  }
+  getAllActiveStudents() {
+    return axios.get("/students/active", { headers: authHeader() });
   }
 
   deleteStudent(id) {

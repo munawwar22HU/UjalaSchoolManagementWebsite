@@ -5,6 +5,7 @@ import StepperContent from "../Common/Stepper/stepperContent";
 import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import StudentService from "../../services/student.service";
+import StepperDate from "../Common/Stepper/stepperDate";
 import axios from "axios";
 export default function StudentRegister(props) {
   const [student, setStudent] = useState({
@@ -29,7 +30,7 @@ export default function StudentRegister(props) {
     fatherAddress: "",
     fatherOccupation: "",
     image: "",
-    class: "",
+    class: "Class",
   });
 
   const [stepper, setStepper] = useState(0);
@@ -113,8 +114,9 @@ export default function StudentRegister(props) {
 
   const createStudent = () => {
     StudentService.registerStudent(student).then(
-      () => {
-        props.history.push("/student/manage-student");
+      (response) => {
+        console.log(student);
+        props.history.push("/student/students/" + response.data.id);
       },
       (error) => {
         const resMessage =
@@ -203,17 +205,17 @@ export default function StudentRegister(props) {
                             }
                           />
                           {/*Date Of Birth*/}
-                          <StepperContent
+                          <StepperDate
                             name={"Date Of Birth"}
                             value={student.dateOfBirth}
-                            placeholder={"DD-MM-YYYY"}
                             onChange={(event) =>
                               setStudent({
                                 ...student,
-                                dateOfBirth: event.target.value,
+                                dateOfBirth: event.target.value.toString(),
                               })
                             }
                           />
+
                           {/*Religion*/}
                           <StepperContent
                             name={"Religion"}
@@ -290,14 +292,13 @@ export default function StudentRegister(props) {
                             }
                           />
                           {/* Date of Admission */}
-                          <StepperContent
-                            name={"Date of Admission"}
+                          <StepperDate
+                            name={"Date Of Admission"}
                             value={student.dateOfAdmission}
-                            placeholder={"Date of Addmission"}
                             onChange={(event) =>
                               setStudent({
                                 ...student,
-                                dateOfAdmission: event.target.value,
+                                dateOfAdmission: event.target.value.toString(),
                               })
                             }
                           />
@@ -484,7 +485,18 @@ export default function StudentRegister(props) {
                           <StepperSelect
                             name={"Class"}
                             value={student.class}
-                            options={["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]}
+                            options={[
+                              "One",
+                              "Two",
+                              "Three",
+                              "Four",
+                              "Five",
+                              "Six",
+                              "Seven",
+                              "Eight",
+                              "Nine",
+                              "Ten",
+                            ]}
                             onChange={(event) =>
                               setStudent({
                                 ...student,

@@ -4,6 +4,7 @@ import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
 import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
+import StepperDate from "../Common/Stepper/stepperDate";
 import StudentService from "../../services/student.service";
 import AuthService from "../../services/auth.service";
 import CertificateService from "../../services/certificates.service.js";
@@ -41,34 +42,17 @@ export default function CertificateRegister(props) {
       })
     );
     // Create an array of student roll numbers only
-    StudentService.getAllStudents().then((res) => {
+    StudentService.getAllActiveStudents().then((res) => {
       const rollNumbers = res.data.map((student) => student.rollNumber);
       setStudentList(rollNumbers);
 
-      const date = new Date();
-
-      // ✅ Reset a Date's time to midnight
-      date.setHours(0, 0, 0, 0);
-
-      // ✅ Format a date to YYYY-MM-DD (or any other format)
-      function padTo2Digits(num) {
-        return num.toString().padStart(2, "0");
-      }
-
-      function formatDate(date) {
-        return [
-          date.getFullYear(),
-          padTo2Digits(date.getMonth() + 1),
-          padTo2Digits(date.getDate()),
-        ].join("-");
-      }
       const currentUser = AuthService.getCurrentUser();
       setStudent({
         ...student,
         rollNumber: res.data[0].rollNumber,
         studentId: res.data[0]._id,
         studentName: res.data[0].name,
-        approvedDate: formatDate(date),
+        approvedDate: new Date(),
         approvedByName: currentUser.name,
         approvedById: currentUser.id,
       });
@@ -91,8 +75,10 @@ export default function CertificateRegister(props) {
 
   const createStudent = () => {
     CertificateService.registerCertificate(student).then(
-      () => {
-        props.history.push("/student/manage-certificate");
+      (response) => {
+        console.log(response);
+        alert("Certificate Created Successfully");
+        props.history.push("/student/certificate/" + response.data._id);
       },
       (error) => {
         const resMessage =
@@ -194,14 +180,13 @@ export default function CertificateRegister(props) {
                             placeholder={"Approved By"}
                           />
                           {/* Date of Admission */}
-                          <StepperContent
+                          <StepperDate
                             name={"Date of Approval"}
                             value={student.approvedDate}
-                            placeholder={"Date of Approval"}
                             onChange={(event) =>
                               setStudent({
                                 ...student,
-                                approvedDate: event.target.value,
+                                approvedDate: event.target.value.toString(),
                               })
                             }
                           />

@@ -2,16 +2,14 @@ import axios from "axios";
 
 class CertificateService {
   registerCertificate(certificate) {
-    return axios.post("/certificates", certificate).then((response) => {
-      return response.data;
-    });
+    return axios.post("/certificates", certificate);
   }
   getAllCertificates() {
     return axios.get("/certificates");
   }
 
   deleteCertificate(id) {
-    return axios.delete(`/certificates/${id}`,);
+    return axios.delete(`/certificates/${id}`);
   }
   getCertificate(id) {
     return axios.get(`/certificates/${id}`);

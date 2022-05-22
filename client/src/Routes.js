@@ -60,7 +60,6 @@ const routes = [
         path: "/student/manage-certificate",
         component: CertificateDetails,
       },
-
       {
         path: "/student/teacher/:id",
         component: TeacherUpdate,
@@ -70,7 +69,7 @@ const routes = [
         component: StudentUpdate,
       },
       {
-        path: "/student/new/:id",
+        path: "/student/certificate/:id",
         component: CertificateUpdate,
       },
     ],

@@ -11,8 +11,7 @@ export default function CertificateDetails(props) {
   });
 
   const updateCertificate = (id) => {
-    console.log(id);
-    props.history.push("/student/new/" + id);
+    props.history.push("/student/certificate/" + id);
   };
 
   const deleteCertificate = (id) => {
@@ -99,7 +98,6 @@ export default function CertificateDetails(props) {
     CertificateService.getAllCertificates().then(
       (response) => {
         setStudentList(response.data);
-        console.log(response.data);
       },
       (error) => {
         const resMessage =
@@ -108,7 +106,6 @@ export default function CertificateDetails(props) {
             error.response.data.message) ||
           error.message ||
           error.toString();
-        console.log(resMessage);
         setMesagge({ ...message, text: resMessage });
       }
     );
