@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import Stepper from "bs-stepper";
 import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
@@ -53,7 +52,6 @@ export default function StudentUpdate(props) {
   ];
 
   const [dummyState, rerender] = React.useState(1);
-
   const [stepper, setStepper] = useState(0);
   const [message, setMesagge] = useState({
     text: "",
@@ -108,7 +106,6 @@ export default function StudentUpdate(props) {
     StudentService.getStudent(id).then(
       (response) => {
         setStudent(response.data);
-        console.log(student);
       },
       (error) => {
         const resMessage =
@@ -131,16 +128,14 @@ export default function StudentUpdate(props) {
     stepper.previous();
   };
 
-  let history = useHistory();
-
   const updateStudent = (event) => {
     event.preventDefault();
     const id = props.match.params.id;
 
     StudentService.updateStudent(id, student).then(
-      (response) => {
+      () => {
         alert("Student Updated Successfully");
-        history.push(`/student/students/${id}`);
+        props.history.push(`/student/students/${id}`);
         rerender(dummyState + 1);
       },
       (error) => {
@@ -227,18 +222,7 @@ export default function StudentUpdate(props) {
                               })
                             }
                           />
-                          {/*Date Of Birth*/}
-                          {/* <StepperContent
-                            name={"Date Of Birth"}
-                            value={student.dateOfBirth}
-                            placeholder={"DD-MM-YYYY"}
-                            onChange={(event) =>
-                              setStudent({
-                                ...student,
-                                dateOfBirth: event.target.value,
-                              })
-                            }
-                          /> */}
+
                           <div className="form-group">
                             <label>Date Of Birth</label>
                             <input
@@ -525,6 +509,7 @@ export default function StudentUpdate(props) {
                             name={"Class"}
                             value={student.class}
                             options={[
+                              "Class",
                               "One",
                               "Two",
                               "Three",

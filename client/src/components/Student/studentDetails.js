@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "../dataTable.js";
-import studentService from "../../services/student.service.js";
+import StudentService from "../../services/student.service.js";
 
 export default function StudentDetails(props) {
   const [studentsList, setStudentList] = useState([]);
@@ -15,10 +15,10 @@ export default function StudentDetails(props) {
 
   const deleteStudent = (id) => {
     const confirmBox = window.confirm(
-      "Do you really want to delete this Student ?"
+      "Do you really want to delete this Teacher ?"
     );
     if (confirmBox === true) {
-      studentService.deleteStudent(id).then(
+      StudentService.deleteStudent(id).then(
         () => {
           rerender(dummyState + 1);
         },
@@ -35,7 +35,6 @@ export default function StudentDetails(props) {
       );
     }
   };
-
   const columns = [
     {
       Header: "Students Information",
@@ -91,7 +90,7 @@ export default function StudentDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onChange={(e) => updateStudent(row.row.original._id)}>
+              <button onClick={(e) => updateStudent(row.row.original._id)}>
                 <i className="fas fa-user-edit" aria-hidden="true" />
               </button>
             </div>
@@ -104,7 +103,7 @@ export default function StudentDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onChange={(e) => deleteStudent(row.row.original._id)}>
+              <button onClick={(e) => deleteStudent(row.row.original._id)}>
                 <i className="fas fa-trash-alt" aria-hidden="true" />
               </button>
             </div>
@@ -115,7 +114,9 @@ export default function StudentDetails(props) {
   ];
 
   useEffect(() => {
-    studentService.getAllStudents().then(
+    console.log("useEffect");
+    console.log("dummyState's state has updated to: " + dummyState);
+    StudentService.getAllStudents().then(
       (response) => {
         setStudentList(response.data);
         console.log(response.data);
@@ -132,6 +133,7 @@ export default function StudentDetails(props) {
       }
     );
   }, [dummyState]);
+
   return (
     <div className="content-wrapper">
       {/* Content Header (Page header) */}

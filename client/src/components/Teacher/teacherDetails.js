@@ -151,7 +151,7 @@ export default function TeacherDetails(props) {
           <div className="col-12 text-center">
             <div className="card">
               <div className="card-header">
-                <h3 className="card-title">All TeacherS</h3>
+                <h3 className="card-title">All Teachers</h3>
               </div>
               {/* /.card-header */}
               {message.text && (

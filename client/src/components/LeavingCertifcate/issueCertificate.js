@@ -60,16 +60,19 @@ export default function CertificateRegister(props) {
   }, []);
   const updateState = (rollNumber) => {
     StudentService.getAllStudents().then((res) => {
-      const data = res.data.filter((temp) => {
-        return temp.rollNumber == rollNumber.toString();
-      });
+      const data = res.data
+        .filter((temp) => {
+          return temp.rollNumber == rollNumber.toString();
+        })
+        .error(() => {
+          setMesagge({ ...message, text: "No student found" });
+        });
       setStudent({
         ...student,
         studentId: data[0]._id,
         studentName: data[0].name,
         rollNumber: data[0].rollNumber,
       });
-      console.log(student);
     });
   };
 
@@ -132,7 +135,7 @@ export default function CertificateRegister(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Add - Student </h3>
+                <h3 className="card-title"> Issue Certificate </h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}

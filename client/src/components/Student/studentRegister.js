@@ -29,7 +29,8 @@ export default function StudentRegister(props) {
     fatherContactNumber: "",
     fatherAddress: "",
     fatherOccupation: "",
-    image: "",
+    image:
+      "https://res.cloudinary.com/doow2fp6w/image/upload/v1650314984/uqsv76s8cag9pqmwzvd9.png",
     class: "Class",
   });
 
@@ -486,6 +487,7 @@ export default function StudentRegister(props) {
                             name={"Class"}
                             value={student.class}
                             options={[
+                              "Class",
                               "One",
                               "Two",
                               "Three",
