@@ -59,14 +59,11 @@ export default function CertificateRegister(props) {
     });
   }, []);
   const updateState = (rollNumber) => {
-    StudentService.getAllStudents().then((res) => {
-      const data = res.data
-        .filter((temp) => {
-          return temp.rollNumber == rollNumber.toString();
-        })
-        .error(() => {
-          setMesagge({ ...message, text: "No student found" });
-        });
+    StudentService.getAllActiveStudents().then((res) => {
+      const data = res.data.filter((temp) => {
+        return temp.rollNumber == rollNumber.toString();
+      });
+
       setStudent({
         ...student,
         studentId: data[0]._id,
