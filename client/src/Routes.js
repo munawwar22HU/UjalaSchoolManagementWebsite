@@ -1,7 +1,7 @@
 // Authentication
 import Login from "./screens/Login.js";
 // User Profile
-import Profile from "./components/Profile.js";
+import Profile from "./components/Common/Profile/Profile.js";
 // Admin
 import Admin from "./screens/Admin";
 import RegisterUser from "./components/Admin/registerUser.js";
@@ -20,6 +20,9 @@ import TeacherUpdate from "./components/Teacher/teacherUpdate.js";
 import CertificateDetails from "./components/LeavingCertifcate/certificateDetails.js";
 import CertificateUpdate from "./components/LeavingCertifcate/editCertificate.js";
 import CertificateRegister from "./components/LeavingCertifcate/issueCertificate";
+// Finance
+import Finance from "./screens/Finance.js";
+import StudentFeesDetails from "./components/StudentFees/studentFeesDetails.js";
 
 const routes = [
   {
@@ -94,6 +97,21 @@ const routes = [
         path: "/admin/:id",
         component: UpdateUser,
       },
+    ],
+  },
+  ,
+  {
+    path: "/finance",
+    component: Finance,
+    routes: [
+      {
+        path: "/finance/profile",
+        component: Profile,
+      },
+      {
+        path: "/finance/manage-student",
+        component: StudentFeesDetails,
+      }
     ],
   },
 ];

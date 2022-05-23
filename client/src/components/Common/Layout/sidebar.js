@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import authService from "../services/auth.service";
+import authService from "../../../services/auth.service";
 export default function Sidebar({ routes }) {
   const [user, setUser] = useState({
     name: "",
@@ -26,8 +26,8 @@ export default function Sidebar({ routes }) {
   return (
     <div>
       <aside
-        className="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4 full-height"
-        style={{ position: "fixed" }}
+        className="main-sidebar  sidebar-dark-primary elevation-4"
+        style={{ height: "auto" }}
       >
         {/* Brand Logo */}
         <a

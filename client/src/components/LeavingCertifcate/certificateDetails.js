@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import DataTable from "../dataTable.js";
+import DataTable from "../Common/Table/dataTable.js";
 import CertificateService from "../../services/certificates.service";
 
 export default function CertificateDetails(props) {

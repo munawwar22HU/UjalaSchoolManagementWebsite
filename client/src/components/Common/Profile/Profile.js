@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import authService from "../services/auth.service";
+import authService from "../../../services/auth.service";
 import axios from "axios";
 export default function Profile(props) {
   const [user, setUser] = useState({

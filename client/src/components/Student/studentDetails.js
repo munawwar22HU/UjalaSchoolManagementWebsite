@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DataTable from "../dataTable.js";
+import DataTable from "../Common/Table/dataTable.js";
 import StudentService from "../../services/student.service.js";
 
 export default function StudentDetails(props) {

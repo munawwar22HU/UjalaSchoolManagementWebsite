@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from "react";
-
 import DataTable from "../Common/Table/dataTable.js";
-import TeacherService from "../../services/teacher.service";
+import StudentService from "../../services/student.service.js";
 
-export default function TeacherDetails(props) {
-  const [teachersList, setTeacherList] = useState([]);
+export default function StudentFeesDetails(props) {
+  const [studentsList, setStudentList] = useState([]);
   const [dummyState, rerender] = React.useState(1);
   const [message, setMesagge] = useState({
     text: "",
   });
 
-  const updateTeacher = (id) => {
-    props.history.push("/student/teacher/" + id);
+  const updateStudent = (id) => {
+    props.history.push("/student/students/" + id);
   };
 
-  const deleteTeacher = (id) => {
+  const deleteStudent = (id) => {
     const confirmBox = window.confirm(
       "Do you really want to delete this Teacher ?"
     );
     if (confirmBox === true) {
-      TeacherService.deleteTeacher(id).then(
+      StudentService.deleteStudent(id).then(
         () => {
           rerender(dummyState + 1);
         },
@@ -36,10 +35,9 @@ export default function TeacherDetails(props) {
       );
     }
   };
-
   const columns = [
     {
-      Header: "Teacher's Information",
+      Header: "Students Information",
       columns: [
         {
           Header: "Name",
@@ -59,6 +57,19 @@ export default function TeacherDetails(props) {
           ),
         },
         {
+          Header: "Roll Number",
+          accessor: "rollNumber",
+        },
+        {
+          Header: "Class",
+          accessor: "class",
+        },
+        {
+          Header: "Sex",
+          accessor: "sex",
+          disableSortBy: true,
+        },
+        {
           Header: "Address",
           accessor: "address",
           disableSortBy: true,
@@ -68,12 +79,8 @@ export default function TeacherDetails(props) {
           accessor: "contactNumber",
         },
         {
-          Header: "Email",
-          accessor: "email",
-        },
-        {
-          Header: "Class",
-          accessor: "class",
+          Header: "Status",
+          accessor: "status",
           disableSortBy: true,
         },
         {
@@ -83,7 +90,7 @@ export default function TeacherDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => updateTeacher(row.row.original._id)}>
+              <button onClick={(e) => updateStudent(row.row.original._id)}>
                 <i className="fas fa-user-edit" aria-hidden="true" />
               </button>
             </div>
@@ -96,7 +103,7 @@ export default function TeacherDetails(props) {
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => deleteTeacher(row.row.original._id)}>
+              <button onClick={(e) => deleteStudent(row.row.original._id)}>
                 <i className="fas fa-trash-alt" aria-hidden="true" />
               </button>
             </div>
@@ -107,10 +114,11 @@ export default function TeacherDetails(props) {
   ];
 
   useEffect(() => {
+    console.log("useEffect");
     console.log("dummyState's state has updated to: " + dummyState);
-    TeacherService.getAllTeachers().then(
+    StudentService.getAllStudents().then(
       (response) => {
-        setTeacherList(response.data);
+        setStudentList(response.data);
         console.log(response.data);
       },
       (error) => {
@@ -125,6 +133,7 @@ export default function TeacherDetails(props) {
       }
     );
   }, [dummyState]);
+
   return (
     <div className="content-wrapper">
       {/* Content Header (Page header) */}
@@ -132,14 +141,14 @@ export default function TeacherDetails(props) {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1>Teacher Details</h1>
+              <h1>Student Details</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
                   <a href="/student">Home</a>
                 </li>
-                <li className="breadcrumb-item active">Teacher Details</li>
+                <li className="breadcrumb-item active">Student Details</li>
               </ol>
             </div>
           </div>
@@ -151,7 +160,7 @@ export default function TeacherDetails(props) {
           <div className="col-12 text-center">
             <div className="card">
               <div className="card-header">
-                <h3 className="card-title">All Teachers</h3>
+                <h3 className="card-title">All Students</h3>
               </div>
               {/* /.card-header */}
               {message.text && (
@@ -164,7 +173,7 @@ export default function TeacherDetails(props) {
 
               <div className="card-body">
                 <DataTable
-                  data={teachersList}
+                  data={studentsList}
                   columns={columns}
                   props={props}
                 ></DataTable>

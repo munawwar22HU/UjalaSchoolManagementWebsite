@@ -1,6 +1,6 @@
 import React from "react";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../../services/auth.service";
 export default function Header() {
   const handleLogout = () => {
     AuthService.logout();
@@ -9,6 +9,14 @@ export default function Header() {
 
   return (
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <a className="nav-link" data-widget="pushmenu" href="#" role="button">
+            <i className="fas fa-bars" />
+          </a>
+        </li>
+      </ul>
+
       {/* Right navbar links */}
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">

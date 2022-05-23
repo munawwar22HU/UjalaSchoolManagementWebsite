@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Sidebar from "../components/sidebar.js";
+import Sidebar from "../components/Common/Layout/sidebar.js";
 import RouteWithSubRoutes from "../utils/RoutesWithSubRoutes";
 import AuthService from "../services/auth.service";
 import { Switch } from "react-router-dom";

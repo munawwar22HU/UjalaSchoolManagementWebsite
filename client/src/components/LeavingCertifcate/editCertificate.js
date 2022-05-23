@@ -3,10 +3,8 @@ import { useHistory } from "react-router-dom";
 import Stepper from "bs-stepper";
 import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
-import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import StepperDate from "../Common/Stepper/stepperDate";
-//import StudentService from "../../services/student.service";
 import CertificateService from "../../services/certificates.service.js";
 import axios from "axios";
 export default function CertificateUpdate(props) {

@@ -13,6 +13,9 @@ export default function Login(props) {
         case "Admin":
           props.history.push("/admin");
           break;
+        case "Finance":
+          props.history.push("/finance");
+          break;
       }
 
       window.location.reload(false);
@@ -44,6 +47,9 @@ export default function Login(props) {
             break;
           case "Admin":
             props.history.push("/admin");
+            break;
+          case "Finance":
+            props.history.push("/finance");
             break;
         }
 
