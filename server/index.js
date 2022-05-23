@@ -9,6 +9,7 @@ import cloudinaryRoutes from "./app/routes/cloudinary.js";
 import adminRoute from "./app/routes/admin.js";
 import teacherRoute from "./app/routes/teacher.js";
 import leaveCertificateRoute from "./app/routes/leaveCertificate.js";
+import feesRoute from "./app/routes/fees.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -29,6 +30,7 @@ app.use("/cloudinary", cloudinaryRoutes);
 app.use("/admins", adminRoute);
 app.use("/teachers", teacherRoute);
 app.use("/certificates", leaveCertificateRoute);
+app.use("/fees", feesRoute);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose

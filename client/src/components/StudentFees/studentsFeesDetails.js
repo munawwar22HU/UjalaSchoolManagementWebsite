@@ -4,37 +4,14 @@ import StudentService from "../../services/student.service.js";
 
 export default function StudentFeesDetails(props) {
   const [studentsList, setStudentList] = useState([]);
-  const [dummyState, rerender] = React.useState(1);
   const [message, setMesagge] = useState({
     text: "",
   });
 
   const updateStudent = (id) => {
-    props.history.push("/student/students/" + id);
+    props.history.push("/finance/manage-student-fees/" + id);
   };
 
-  const deleteStudent = (id) => {
-    const confirmBox = window.confirm(
-      "Do you really want to delete this Teacher ?"
-    );
-    if (confirmBox === true) {
-      StudentService.deleteStudent(id).then(
-        () => {
-          rerender(dummyState + 1);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          console.log(resMessage);
-          setMesagge({ ...message, text: resMessage });
-        }
-      );
-    }
-  };
   const columns = [
     {
       Header: "Students Information",
@@ -96,26 +73,11 @@ export default function StudentFeesDetails(props) {
             </div>
           ),
         },
-        {
-          Header: "Delete",
-          accessor: "delete",
-          disableFilters: true,
-          disableSortBy: true,
-          Cell: (row) => (
-            <div>
-              <button onClick={(e) => deleteStudent(row.row.original._id)}>
-                <i className="fas fa-trash-alt" aria-hidden="true" />
-              </button>
-            </div>
-          ),
-        },
       ],
     },
   ];
 
   useEffect(() => {
-    console.log("useEffect");
-    console.log("dummyState's state has updated to: " + dummyState);
     StudentService.getAllStudents().then(
       (response) => {
         setStudentList(response.data);
@@ -132,7 +94,7 @@ export default function StudentFeesDetails(props) {
         setMesagge({ ...message, text: resMessage });
       }
     );
-  }, [dummyState]);
+  }, []);
 
   return (
     <div className="content-wrapper">

@@ -49,9 +49,14 @@ export default function Finance(props) {
           class: "nav-icon fas fa-user-plus",
         },
         {
-          to: "/finance/manage-student-fees",
+          to: "/finance/manage-fees",
           class: "nav-icon fas fa-receipt",
           name: "View Fees Vouchers",
+        },
+        {
+          to: "/finance/generate-all",
+          class: "nav-icon fas fa-receipt",
+          name: "Generate All",
         },
       ],
     },

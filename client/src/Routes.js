@@ -22,8 +22,12 @@ import CertificateUpdate from "./components/LeavingCertifcate/editCertificate.js
 import CertificateRegister from "./components/LeavingCertifcate/issueCertificate";
 // Finance
 import Finance from "./screens/Finance.js";
-import StudentFeesDetails from "./components/StudentFees/studentFeesDetails.js";
-
+import StudentFeesDetails from "./components/StudentFees/studentsFeesDetails.js";
+import StudentFees from "./components/StudentFees/studentFees.js";
+import ManageFees from "./components/StudentFees/manageFees.js";
+import EditFeeVoucher from "./components/StudentFees/editFeeVoucher.js";
+import AddFeeVoucher from "./components/StudentFees/addFeeVoucher.js";
+import GenerateAll from "./components/StudentFees/generateAll.js";
 const routes = [
   {
     path: "/login",
@@ -111,7 +115,27 @@ const routes = [
       {
         path: "/finance/manage-student",
         component: StudentFeesDetails,
-      }
+      },
+      {
+        path: "/finance/manage-fees",
+        component: ManageFees,
+      },
+      {
+        path: "/finance/manage-student-fees/:id",
+        component: StudentFees,
+      },
+      {
+        path: "/finance/add-fee-voucher/:id",
+        component: AddFeeVoucher,
+      },
+      {
+        path: "/finance/edit-fee-voucher/:id",
+        component: EditFeeVoucher,
+      },
+      {
+        path: "/finance/generate-all",
+        component: GenerateAll,
+      },
     ],
   },
 ];

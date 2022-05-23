@@ -1,4 +1,3 @@
-import leaveCertificate from "../models/leaveCertificate.js";
 import LeaveCertificateData from "../models/leaveCertificate.js";
 import StudentData from "../models/student.js";
 export const registerLeaveCertificate = async (req, res) => {
