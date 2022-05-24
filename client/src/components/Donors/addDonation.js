@@ -201,7 +201,7 @@ export default function AddDonation(props) {
                           />
                           <StepperCheckbox
                             name={"Cheque"}
-                            value={donation.isCash}
+                            value={donation.isCheque}
                             onChange={(e) =>
                               setDonation({
                                 ...donation,
@@ -239,12 +239,12 @@ export default function AddDonation(props) {
                             <StepperTextArea
                               name={"Address"}
                               placeholder={"Address"}
-                              value={donation.address}
+                              value={donation.branchAddress}
                               disabled={donation.isCheque ? false : true}
                               onChange={(e) =>
                                 setDonation({
                                   ...donation,
-                                  address: e.target.value,
+                                  branchAddress: e.target.value,
                                 })
                               }
                             />
@@ -261,10 +261,9 @@ export default function AddDonation(props) {
                           <div className="box-profile">
                             <div className="text-center">
                               <img
-                                className="profile-user-img img-circle"
                                 src={donation.chequeImage}
                                 alt="cheque"
-                                style={{ width: 300, height: 300 }}
+                                style={{ width: 600, height: 400 }}
                                 disabled={donation.isCheque ? false : true}
                               />
                             </div>

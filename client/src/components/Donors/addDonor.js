@@ -38,6 +38,7 @@ export default function AddDonor(props) {
       (response) => {
         console.log(response);
         alert("Donor added successfully");
+        props.history.push("/finance/donor/" + response.data.id);
         //props.history.push("/student/certificate/" + response.data._id);
       },
       (error) => {
