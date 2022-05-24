@@ -9,6 +9,7 @@ export default function StepperContent(params) {
         placeholder={params.placeholder}
         value={params.value}
         onChange={params.onChange}
+        disabled={params.disabled}
       />
     </div>
   );

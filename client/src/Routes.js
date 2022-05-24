@@ -22,12 +22,22 @@ import CertificateUpdate from "./components/LeavingCertifcate/editCertificate.js
 import CertificateRegister from "./components/LeavingCertifcate/issueCertificate";
 // Finance
 import Finance from "./screens/Finance.js";
+// Student Finance
 import StudentFeesDetails from "./components/StudentFees/studentsFeesDetails.js";
 import StudentFees from "./components/StudentFees/studentFees.js";
 import ManageFees from "./components/StudentFees/manageFees.js";
 import EditFeeVoucher from "./components/StudentFees/editFeeVoucher.js";
 import AddFeeVoucher from "./components/StudentFees/addFeeVoucher.js";
 import GenerateAll from "./components/StudentFees/generateAll.js";
+// Donors
+import AddDonor from "./components/Donors/addDonor.js";
+import DonorDetails from "./components/Donors/donorDetails.js";
+import EditDonor from "./components/Donors/editDonor.js";
+// Donations
+import DonationDetails from "./components/Donors/donationDetails.js";
+import AddDonation from "./components/Donors/addDonation.js";
+import EditDonation from "./components/Donors/editDonation.js";
+
 const routes = [
   {
     path: "/login",
@@ -136,6 +146,30 @@ const routes = [
         path: "/finance/generate-all",
         component: GenerateAll,
       },
+      {
+        path: "/finance/donor/add-donor",
+        component: AddDonor,
+      },
+      {
+        path: "/finance/donor/manage-donor",
+        component: DonorDetails,
+      },
+      {
+        path: "/finance/donor/manage-donation",
+        component: DonationDetails,
+      },
+      {
+        path: "/finance/donor/:id",
+        component: EditDonor,
+      },
+      {
+        path: "/finance/donation/:id",
+        component: AddDonation,
+      },
+      {
+        path: "/finance/edit-donation/:id",
+        component: EditDonation,
+      }
     ],
   },
 ];

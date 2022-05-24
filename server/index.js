@@ -10,6 +10,8 @@ import adminRoute from "./app/routes/admin.js";
 import teacherRoute from "./app/routes/teacher.js";
 import leaveCertificateRoute from "./app/routes/leaveCertificate.js";
 import feesRoute from "./app/routes/fees.js";
+import donorRoute from "./app/routes/donor.js";
+import donationRoute from "./app/routes/donation.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -31,6 +33,8 @@ app.use("/admins", adminRoute);
 app.use("/teachers", teacherRoute);
 app.use("/certificates", leaveCertificateRoute);
 app.use("/fees", feesRoute);
+app.use("/donors", donorRoute);
+app.use("/donations", donationRoute);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose

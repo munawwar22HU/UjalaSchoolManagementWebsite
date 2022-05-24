@@ -9,7 +9,23 @@ export default function Finance(props) {
     {
       name: "Sponsors",
       class: "nav-icon fas fa-hands-helping",
-      routes: [],
+      routes: [
+        {
+          to: "/finance/sponsors/add",
+          name: "Add Sponsors",
+          class: "nav-icon fas fa-plus",
+        },
+        {
+          to: "/finance/sponsors/list",
+          name: "List Sponsors",
+          class: "nav-icon fas fa-list",
+        },
+        {
+          to: "/finance/sponsors/edit",
+          name: "Edit Sponsors",
+          class: "nav-icon fas fa-edit",
+        },
+      ],
       //   routes: [
       //     {
       //       to: "/student/add-student",
@@ -27,16 +43,21 @@ export default function Finance(props) {
       name: "Donors",
       class: "nav-icon fas fa-donate",
       routes: [
-        // {
-        //   to: "/student/add-teacher",
-        //   class: "nav-icon fas fa-user-plus",
-        //   name: "Add Teacher",
-        // },
-        // {
-        //   to: "/student/manage-teacher",
-        //   class: "nav-icon fas fa-user-edit",
-        //   name: "Manage Teachers",
-        // },
+        {
+          to: "/finance/donor/add-donor",
+          class: "nav-icon fas fa-user-plus",
+          name: "Add Donor",
+        },
+        {
+          to: "/finance/donor/manage-donor",
+          class: "nav-icon fas fa-user-edit",
+          name: "Manage Donors",
+        },
+        {
+          to: "/finance/donor/manage-donation",
+          class: "nav-icon fas fa-money-check-alt",
+          name: "Manage Donor Payment",
+        },
       ],
     },
     {
