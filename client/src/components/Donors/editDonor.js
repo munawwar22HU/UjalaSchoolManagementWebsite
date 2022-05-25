@@ -47,7 +47,7 @@ export default function EditDonor(props) {
     DonorService.updateDonor(id, donor).then(
       (response) => {
         alert("Donor updated successfully");
-        props.history.push("finance/donor/" + id);
+        props.history.push("/finance/donor/" + id);
         rerender(dummyState + 1);
       },
       (error) => {
@@ -104,16 +104,16 @@ export default function EditDonor(props) {
           accessor: "receiptNumber",
         },
         {
-          Header: "Donor Name",
-          accessor: "donorName",
-        },
-        {
           Header: "Amount",
           accessor: "amount",
         },
         {
           Header: "Date",
           accessor: "date",
+        },
+        {
+          Header: "Received By",
+          accessor: "receivedBy",
         },
         {
           Header: "Edit",

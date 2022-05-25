@@ -4,7 +4,7 @@ import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
 import StepperDate from "../Common/Stepper/stepperDate";
 import StepperSelect from "../Common/Stepper/stepperSelector";
-import SponsorService from "../../services/sponsor.service";
+import SponsorshipService from "../../services/sponsorships.service";
 import moment from "moment";
 import DataTable from "../Common/Table/dataTable";
 export default function EditSponsorships(props) {
@@ -88,7 +88,7 @@ export default function EditSponsorships(props) {
       })
     );
     const id = props.match.params.id;
-    SponsorService.getSponsorship(id).then((res) => {
+    SponsorshipService.getSponsorship(id).then((res) => {
       console.log(res.data);
       setSponsor(res.data);
     });
@@ -159,10 +159,11 @@ export default function EditSponsorships(props) {
     console.log("update");
 
     const id = props.match.params.id;
-    SponsorService.updateSponsor(id, sponsor).then(
+    SponsorshipService.updateSponsorship(id, sponsor).then(
       (res) => {
         alert("Donation Updated Successfully");
-        props.history.push("/finance/sponsorship/edit-sponsorship/" + id);
+        console.log("164");
+        props.history.push("/finance/edit-sponsorship/" + id);
         rerender(dummyState + 1);
       },
       (error) => {

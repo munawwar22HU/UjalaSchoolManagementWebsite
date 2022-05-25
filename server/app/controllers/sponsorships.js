@@ -15,7 +15,6 @@ export const registerSponsorship = async (req, res) => {
   const savedSponsorship = await new SponsorshipData({
     ...sponsorship,
     sponsorshipNumber: sponsorship_number,
-    status: "Incomplete",
   });
   try {
     savedSponsorship.save();
@@ -48,7 +47,6 @@ export const getSponsorships = async (req, res) => {
         endDate: 1,
         amount: 1,
         numberOfInstallments: 1,
-        status: 1,
       }
     );
     console.log(allSponsorships);
@@ -60,8 +58,11 @@ export const getSponsorships = async (req, res) => {
 
 export const updateSponsorship = async (req, res) => {
   console.log("Sponsorship updated successfully!");
+  console.log(req.body);
   try {
     const id = req.params.id;
+    const b = req.body;
+    console.log(b);
     await SponsorshipData.findByIdAndUpdate(id, {
       $set: req.body,
     }).exec();

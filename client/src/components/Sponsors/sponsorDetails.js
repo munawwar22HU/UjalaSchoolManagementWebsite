@@ -10,7 +10,8 @@ export default function SponsorDetails(props) {
   });
 
   const updateSponsor = (id) => {
-    props.history.push("/finance/sponsor/" + id);
+    console.log("update sponsor");
+    props.history.push(`/finance/edit-sponsor/${id}`);
   };
 
   const deleteSponsor = (id) => {

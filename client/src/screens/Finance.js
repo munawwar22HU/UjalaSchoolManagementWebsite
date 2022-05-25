@@ -11,17 +11,17 @@ export default function Finance(props) {
       class: "nav-icon fas fa-hands-helping",
       routes: [
         {
-          to: "/finance/sponsor/add-sponsor",
+          to: "/finance/add-sponsor",
           name: "Add Sponsors",
           class: "nav-icon fas fa-plus",
         },
         {
-          to: "/finance/sponsor/manage-sponsor",
+          to: "/finance/manage-sponsor",
           name: "Manage Sponsors",
           class: "nav-icon fas fa-list",
         },
         {
-          to: "/finance/sponsorship/manage-sponsorship",
+          to: "/finance/manage-sponsorship",
           name: "Manage Sponsor Payments",
           class: "nav-icon fas fa-edit",
         },

@@ -58,10 +58,6 @@ const sponsorshipSchema = new mongoose.Schema({
       },
     },
   ],
-  status: {
-    type: String,
-    required: true,
-  },
   sponsorshipNumber: {
     type: Number,
     required: true,

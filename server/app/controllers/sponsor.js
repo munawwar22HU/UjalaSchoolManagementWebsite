@@ -45,6 +45,8 @@ export const getSponsors = async (req, res) => {
 };
 
 export const updateSponsor = async (req, res) => {
+  console.log("Sponsor updated successfully!");
+  console.log(req.body);
   try {
     const id = req.params.id;
     await SponsorData.findByIdAndUpdate(id, {

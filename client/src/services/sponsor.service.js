@@ -13,38 +13,18 @@ class SponsorService {
     return axios.get(`/sponsors/${id}`);
   }
   updateSponsor(id, sponsor) {
-    return axios.put(`/sponsors/${id}`, sponsor).then((response) => {
-      return response.data;
-    });
+    return axios
+      .put(`/sponsors/${id}`, sponsor, { headers: authHeader() })
+      .then((response) => {
+        return response.data;
+      });
   }
   deleteSponsor(id) {
     return axios.delete(`/sponsors/${id}`);
   }
 
-  registerSponsorships(sponsorship) {
-    return axios.post("/sponsorships", sponsorship, { headers: authHeader() });
-  }
-  getAllSponsorships() {
-    return axios.get("/sponsorships", { headers: authHeader() });
-  }
-  getSponsorship(id) {
-    return axios.get(`/sponsorships/${id}`);
-  }
-  updateSponsorship(id, sponsorship) {
-    console.log("function called");
-    return axios.put(
-      `/sponsorships/${id}`,
-      sponsorship.then((response) => {
-        return response.data;
-      })
-    );
-  }
-  deleteSponsorship(id) {
-    return axios.delete(`/sponsorships/${id}`);
-  }
-
   getAllSponsorshipsBySponsor(id) {
-    return axios.get(`/sponsorships/all/${id}`, { headers: authHeader() });
+    return axios.get(`/stships/all/${id}`, { headers: authHeader() });
   }
 }
 export default new SponsorService();

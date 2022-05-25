@@ -37,7 +37,7 @@ export default function AddSponsor(props) {
       (response) => {
         console.log(response);
         alert("Sponsor added successfully");
-        props.history.push("/finance/sponsor/" + response.data.id);
+        props.history.push("/finance/edit-sponsor/" + response.data.id);
         //props.history.push("/student/certificate/" + response.data._id);
       },
       (error) => {
@@ -120,7 +120,10 @@ export default function AddSponsor(props) {
                             placeholder={"Address"}
                             value={sponsor.address}
                             onChange={(e) =>
-                              setSponsor({ ...sponsor, address: e.target.value })
+                              setSponsor({
+                                ...sponsor,
+                                address: e.target.value,
+                              })
                             }
                           />
                           <StepperSelect

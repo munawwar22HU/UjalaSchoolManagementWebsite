@@ -38,7 +38,7 @@ app.use("/fees", feesRoute);
 app.use("/donors", donorRoute);
 app.use("/donations", donationRoute);
 app.use("/sponsors", sponsorRoute);
-app.use("/sponsorships", sponsorshipRoute);
+app.use("/stships", sponsorshipRoute);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose

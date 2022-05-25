@@ -4,7 +4,9 @@ import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
 import StepperDate from "../Common/Stepper/stepperDate";
 import StepperSelect from "../Common/Stepper/stepperSelector";
+
 import SponsorService from "../../services/sponsor.service";
+import SponsorshipsService from "../../services/sponsorships.service";
 import StudentService from "../../services/student.service";
 import moment from "moment";
 import DataTable from "../Common/Table/dataTable";
@@ -199,13 +201,11 @@ export default function AddSponsorships(props) {
   };
 
   const createSponsorship = () => {
-    SponsorService.registerSponsorships(sponsor).then(
+    SponsorshipsService.registerSponsorship(sponsor).then(
       (response) => {
         console.log(response);
         alert("Sponsorship added successfully");
-        props.history.push(
-          "/finance/sponsorship/edit-sponsorship/" + response.data._id
-        );
+        props.history.push("/finance/edit-sponsorship/" + response.data.id);
       },
       (error) => {
         const resMessage =

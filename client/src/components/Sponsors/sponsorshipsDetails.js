@@ -1,6 +1,6 @@
 import react, { useState, useEffect } from "react";
 import DataTable from "../Common/Table/dataTable.js";
-import SponsorService from "../../services/sponsor.service";
+import SponsorshipsService from "../../services/sponsorships.service.js";
 
 export default function SponsorshipDetails(props) {
   const [sponsorsList, setSponsorList] = useState([]);
@@ -10,7 +10,7 @@ export default function SponsorshipDetails(props) {
   });
 
   const updateSponsor = (id) => {
-    props.history.push("/finance/sponsorship/edit-sponsorship/" + id);
+    props.history.push("/finance/edit-sponsorship/" + id);
   };
 
   const deleteSponsor = (id) => {
@@ -18,7 +18,7 @@ export default function SponsorshipDetails(props) {
       "Do you really want to delete this Donor ?"
     );
     if (confirmBox === true) {
-      SponsorService.deleteSponsor(id).then(
+      SponsorshipsService.deleteSponsorship(id).then(
         () => {
           rerender(dummyState + 1);
         },
@@ -69,10 +69,6 @@ export default function SponsorshipDetails(props) {
           accessor: "amount",
         },
         {
-          Header: "Status",
-          accessor: "status",
-        },
-        {
           Header: "Number of Installments",
           accessor: "numberOfInstallments",
         },
@@ -108,7 +104,7 @@ export default function SponsorshipDetails(props) {
 
   useEffect(() => {
     console.log("dummyState's state has updated to: " + dummyState);
-    SponsorService.getAllSponsorships().then(
+    SponsorshipsService.getAllSponsorships().then(
       (response) => {
         setSponsorList(response.data);
       },

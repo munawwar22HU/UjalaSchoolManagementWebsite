@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Stepper from "bs-stepper";
 import StepperHeader from "../Common/Stepper/stepperHeader";
 import StepperContent from "../Common/Stepper/stepperContent";
@@ -6,6 +7,7 @@ import StepperSelect from "../Common/Stepper/stepperSelector";
 import StepperTextArea from "../Common/Stepper/stepperTextArea";
 import DataTable from "../Common/Table/dataTable";
 import SponsorService from "../../services/sponsor.service";
+import SponsorshipsService from "../../services/sponsorships.service";
 export default function EditSponsor(props) {
   const [sponsor, setSponsor] = useState({
     name: "",
@@ -21,6 +23,8 @@ export default function EditSponsor(props) {
   const [message, setMesagge] = useState({
     text: "",
   });
+
+  let history = useHistory();
 
   const nextStepper = () => {
     stepper.next();
@@ -44,10 +48,12 @@ export default function EditSponsor(props) {
   const updateSponsor = (event) => {
     event.preventDefault();
     const id = props.match.params.id;
+    // console.log("id", id);
     SponsorService.updateSponsor(id, sponsor).then(
       (response) => {
         alert("Sponsor updated successfully");
-        props.history.push("finance/sponsor/" + id);
+        console.log("id", id);
+        history.push("/finance/edit-sponsor/" + id);
         rerender(dummyState + 1);
       },
       (error) => {
@@ -72,7 +78,7 @@ export default function EditSponsor(props) {
       "Do you really want to delete this Donor ?"
     );
     if (confirmBox === true) {
-      SponsorService.deleteSponsor(id).then(
+      SponsorshipsService.deleteSponsorship(id).then(
         () => {
           rerender(dummyState + 1);
         },
@@ -92,28 +98,44 @@ export default function EditSponsor(props) {
   const newSponsorship = (event) => {
     event.preventDefault();
     const id = props.match.params.id;
-    props.history.push("/finance/sponsorship/add-sponsorship/" + id);
+    props.history.push("/finance/add-sponsorship/" + id);
   };
 
   const columns = [
     {
-      Header: "Sponsorship Information",
+      Header: "Donors Information",
       columns: [
         {
-          Header: "Receipt Number",
-          accessor: "receiptNumber",
+          Header: " Sponsorship Number",
+          accessor: "sponsorshipNumber",
         },
         {
-          Header: "Donor Name",
-          accessor: "donorName",
+          Header: "Sponsor Name",
+          accessor: "sponsorName",
+        },
+        {
+          Header: "Student Name",
+          accessor: "studentName",
+        },
+        {
+          Header: "Roll Number",
+          accessor: "studentRollNumber",
+        },
+        {
+          Header: "Start Date",
+          accessor: "startDate",
+        },
+        {
+          Header: "End Date",
+          accessor: "endDate",
         },
         {
           Header: "Amount",
           accessor: "amount",
         },
         {
-          Header: "Date",
-          accessor: "date",
+          Header: "Number of Installments",
+          accessor: "numberOfInstallments",
         },
         {
           Header: "Edit",

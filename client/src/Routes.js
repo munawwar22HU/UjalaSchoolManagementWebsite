@@ -179,27 +179,27 @@ const routes = [
         component: EditDonation,
       },
       {
-        path: "/finance/sponsor/add-sponsor",
+        path: "/finance/add-sponsor",
         component: AddSponsor,
       },
       {
-        path: "/finance/sponsor/manage-sponsor",
+        path: "/finance/manage-sponsor",
         component: SponsorDetails,
       },
       {
-        path: "/finance/sponsor/:id",
+        path: "/finance/edit-sponsor/:id",
         component: EditSponsor,
       },
       {
-        path: "/finance/sponsorship/add-sponsorship/:id",
+        path: "/finance/add-sponsorship/:id",
         component: AddSponsorship,
       },
       {
-        path: "/finance/sponsorship/edit-sponsorship/:id",
+        path: "/finance/edit-sponsorship/:id",
         component: EditSponsorship,
       },
       {
-        path: "/finance/sponsorship/manage-sponsorship",
+        path: "/finance/manage-sponsorship",
         component: SponsorshipDetails,
       },
     ],
