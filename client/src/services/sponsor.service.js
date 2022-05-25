@@ -21,26 +21,30 @@ class SponsorService {
     return axios.delete(`/sponsors/${id}`);
   }
 
-  registerDonation(donation) {
-    return axios.post("/donations", donation, { headers: authHeader() });
+  registerSponsorships(sponsorship) {
+    return axios.post("/sponsorships", sponsorship, { headers: authHeader() });
   }
-  getAllDonations() {
-    return axios.get("/donations", { headers: authHeader() });
+  getAllSponsorships() {
+    return axios.get("/sponsorships", { headers: authHeader() });
   }
-  getDonation(id) {
-    return axios.get(`/donations/${id}`);
+  getSponsorship(id) {
+    return axios.get(`/sponsorships/${id}`);
   }
-  updateDonation(id, donation) {
-    return axios.put(`/donations/${id}`, donation).then((response) => {
-      return response.data;
-    });
+  updateSponsorship(id, sponsorship) {
+    console.log("function called");
+    return axios.put(
+      `/sponsorships/${id}`,
+      sponsorship.then((response) => {
+        return response.data;
+      })
+    );
   }
-  deleteDonation(id) {
-    return axios.delete(`/donations/${id}`);
+  deleteSponsorship(id) {
+    return axios.delete(`/sponsorships/${id}`);
   }
 
-  getAllDonationsByDonor(id) {
-    return axios.get(`/donations/all/${id}`, { headers: authHeader() });
+  getAllSponsorshipsBySponsor(id) {
+    return axios.get(`/sponsorships/all/${id}`, { headers: authHeader() });
   }
 }
 export default new SponsorService();

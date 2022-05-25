@@ -158,7 +158,7 @@ export default function EditSponsor(props) {
       setSponsor(response.data);
     });
 
-    SponsorService.getAllDonationsByDonor(id).then(
+    SponsorService.getAllSponsorshipsBySponsor(id).then(
       (response) => {
         setSponsorshipList(response.data);
       },

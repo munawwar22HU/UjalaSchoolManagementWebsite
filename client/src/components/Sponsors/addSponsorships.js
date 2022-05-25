@@ -75,10 +75,6 @@ export default function AddSponsorships(props) {
                 checked={row.row.original.isPaid ? true : false}
                 // onClick={(e) => handleClick(e, row.row.original)}
               />
-
-              {/* <button onClick={(e) => updateStudent(row.row.original._id)}>
-                <i className="fas fa-user-edit" aria-hidden="true" />
-              </button> */}
             </div>
           ),
         },
@@ -203,24 +199,25 @@ export default function AddSponsorships(props) {
   };
 
   const createSponsorship = () => {
-    // DonorService.registerDonation(donation).then(
-    //   (response) => {
-    //     console.log(response);
-    //     alert("Donor added successfully");
-    //     props.history.push("/finance/edit-donation/" + response.data.id);
-    //     //props.history.push("/student/certificate/" + response.data._id);
-    //   },
-    //   (error) => {
-    //     const resMessage =
-    //       (error.response &&
-    //         error.response.data &&
-    //         error.response.data.message) ||
-    //       error.message ||
-    //       error.toString();
-    //     console.log(resMessage);
-    //     alert(resMessage);
-    //   }
-    // );
+    SponsorService.registerSponsorships(sponsor).then(
+      (response) => {
+        console.log(response);
+        alert("Sponsorship added successfully");
+        props.history.push(
+          "/finance/sponsorship/edit-sponsorship/" + response.data._id
+        );
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        console.log(resMessage);
+        alert(resMessage);
+      }
+    );
   };
 
   const headers = [

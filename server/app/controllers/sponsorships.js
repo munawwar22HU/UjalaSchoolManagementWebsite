@@ -15,6 +15,7 @@ export const registerSponsorship = async (req, res) => {
   const savedSponsorship = await new SponsorshipData({
     ...sponsorship,
     sponsorshipNumber: sponsorship_number,
+    status: "Incomplete",
   });
   try {
     savedSponsorship.save();
@@ -36,7 +37,20 @@ export const getSponsorship = async (req, res) => {
 
 export const getSponsorships = async (req, res) => {
   try {
-    const allSponsorships = await SponsorshipData.find();
+    const allSponsorships = await SponsorshipData.find(
+      {},
+      {
+        sponsorshipNumber: 1,
+        sponsorName: 1,
+        studentName: 1,
+        studentRollNumber: 1,
+        startDate: 1,
+        endDate: 1,
+        amount: 1,
+        numberOfInstallments: 1,
+        status: 1,
+      }
+    );
     console.log(allSponsorships);
     res.status(200).json(allSponsorships);
   } catch (error) {
@@ -45,6 +59,7 @@ export const getSponsorships = async (req, res) => {
 };
 
 export const updateSponsorship = async (req, res) => {
+  console.log("Sponsorship updated successfully!");
   try {
     const id = req.params.id;
     await SponsorshipData.findByIdAndUpdate(id, {
