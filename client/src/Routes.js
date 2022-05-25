@@ -37,6 +37,14 @@ import EditDonor from "./components/Donors/editDonor.js";
 import DonationDetails from "./components/Donors/donationDetails.js";
 import AddDonation from "./components/Donors/addDonation.js";
 import EditDonation from "./components/Donors/editDonation.js";
+// Sponsors
+import AddSponsor from "./components/Sponsors/addSponsors.js";
+import SponsorDetails from "./components/Sponsors/sponsorDetails.js";
+import EditSponsor from "./components/Sponsors/editSponsors.js";
+// Sponsorship
+import SponsorshipDetails from "./components/Sponsors/sponsorshipsDetails.js";
+import AddSponsorship from "./components/Sponsors/addSponsorships.js";
+import EditSponsorship from "./components/Sponsors/editSponsorships.js";
 
 const routes = [
   {
@@ -169,7 +177,31 @@ const routes = [
       {
         path: "/finance/edit-donation/:id",
         component: EditDonation,
-      }
+      },
+      {
+        path: "/finance/sponsor/add-sponsor",
+        component: AddSponsor,
+      },
+      {
+        path: "/finance/sponsor/manage-sponsor",
+        component: SponsorDetails,
+      },
+      {
+        path: "/finance/sponsor/:id",
+        component: EditSponsor,
+      },
+      {
+        path: "/finance/sponsorship/add-sponsorship/:id",
+        component: AddSponsorship,
+      },
+      {
+        path: "/finance/sponsorship/edit-sponsorship/:id",
+        component: EditSponsorship,
+      },
+      {
+        path: "/finance/sponsorship/manage-sponsorship",
+        component: SponsorshipDetails,
+      },
     ],
   },
 ];

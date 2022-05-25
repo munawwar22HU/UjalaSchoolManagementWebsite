@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const donorSchema = new mongoose.Schema({
+const sponsorSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -24,6 +24,5 @@ const donorSchema = new mongoose.Schema({
     type: Number,
   },
 });
-
-const donor = mongoose.model("donor", donorSchema);
-export default donor;
+const sponsor = mongoose.model("sponsor", sponsorSchema);
+export default sponsor;

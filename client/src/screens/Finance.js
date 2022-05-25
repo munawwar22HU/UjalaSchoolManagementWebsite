@@ -11,33 +11,21 @@ export default function Finance(props) {
       class: "nav-icon fas fa-hands-helping",
       routes: [
         {
-          to: "/finance/sponsors/add",
+          to: "/finance/sponsor/add-sponsor",
           name: "Add Sponsors",
           class: "nav-icon fas fa-plus",
         },
         {
-          to: "/finance/sponsors/list",
-          name: "List Sponsors",
+          to: "/finance/sponsor/manage-sponsor",
+          name: "Manage Sponsors",
           class: "nav-icon fas fa-list",
         },
         {
-          to: "/finance/sponsors/edit",
-          name: "Edit Sponsors",
+          to: "/finance/sponsorship/manage-sponsorship",
+          name: "Manage Sponsor Payments",
           class: "nav-icon fas fa-edit",
         },
       ],
-      //   routes: [
-      //     {
-      //       to: "/student/add-student",
-      //       class: "nav-icon fas fa-user-plus",
-      //       name: "Add Student",
-      //     },
-      //     {
-      //       to: "/student/manage-student",
-      //       class: "nav-icon fas fa-user-edit",
-      //       name: "Manage Students",
-      //     },
-      //   ],
     },
     {
       name: "Donors",
@@ -56,7 +44,7 @@ export default function Finance(props) {
         {
           to: "/finance/donor/manage-donation",
           class: "nav-icon fas fa-money-check-alt",
-          name: "Manage Donor Payment",
+          name: "Manage Donor Payments",
         },
       ],
     },
