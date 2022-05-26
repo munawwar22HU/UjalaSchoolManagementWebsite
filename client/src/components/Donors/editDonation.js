@@ -33,7 +33,7 @@ export default function EditDonation(props) {
   const headers = [
     {
       target: "#donor-part",
-      name: "Donor Information",
+      name: "Background Information",
     },
     {
       target: "#submit-part",
@@ -125,14 +125,14 @@ export default function EditDonation(props) {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1> Donation </h1>
+              <h1>Edit Donation </h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/home"> Home </a>
+                  <a href="/finance"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Add Donation </li>
+                <li className="breadcrumb-item active">Edit Donation </li>
               </ol>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function EditDonation(props) {
           <div className="col-md-12">
             <div className="card card-default">
               <div className="card-header">
-                <h3 className="card-title"> Add Donor </h3>
+                <h3 className="card-title">Donation</h3>
               </div>
               <div className="card-body p-0">
                 <div className="bs-stepper" id="stepper1">

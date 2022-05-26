@@ -240,14 +240,14 @@ export default function StudentFees(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Update Student </h1>
+              <h1> Student Fees</h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/student"> Home </a>
+                  <a href="/finance">Home</a>
                 </li>
                 <li className="breadcrumb-item active"> Student Fees </li>
               </ol>

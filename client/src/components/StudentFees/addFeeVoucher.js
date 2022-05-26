@@ -142,16 +142,16 @@ export default function AddFeeVoucher(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Issue Voucher </h1>
+              <h1>Add Fee Voucher</h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/student"> Home </a>
+                  <a href="/finance"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Issue - Voucher </li>
+                <li className="breadcrumb-item active">Add Fee Voucher</li>
               </ol>
             </div>
             {/* Homepage Link End */}

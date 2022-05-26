@@ -73,16 +73,16 @@ export default function GenerateAll(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Update Student </h1>
+              <h1>Generate All</h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/student"> Home </a>
+                  <a href="/finance"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Student Fees </li>
+                <li className="breadcrumb-item active">Generate All</li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -98,7 +98,7 @@ export default function GenerateAll(props) {
           <div className="col-md-12">
             <div className="card">
               <div className="card-header">
-                <h3 className="card-title">Student Details</h3>
+                <h3 className="card-title">Fees Vouchers</h3>
                 <div className="card-tools">
                   <button
                     type="button"

@@ -39,7 +39,7 @@ export default function SponsorDetails(props) {
 
   const columns = [
     {
-      Header: "Donors Information",
+      Header: "Sponsors Information",
       columns: [
         {
           Header: "Registration Number",
@@ -121,14 +121,14 @@ export default function SponsorDetails(props) {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1>Student Details</h1>
+              <h1>Manage Sponsors</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/student">Home</a>
+                  <a href="/finance">Home</a>
                 </li>
-                <li className="breadcrumb-item active">Donor Details</li>
+                <li className="breadcrumb-item active">Manage Sponsors</li>
               </ol>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function SponsorDetails(props) {
           <div className="col-12 text-center">
             <div className="card">
               <div className="card-header">
-                <h3 className="card-title">All Donors</h3>
+                <h3 className="card-title">All Sponsors</h3>
               </div>
               {/* /.card-header */}
               {message.text && (

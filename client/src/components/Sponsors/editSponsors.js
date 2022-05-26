@@ -37,7 +37,7 @@ export default function EditSponsor(props) {
   const headers = [
     {
       target: "#donor-part",
-      name: "Donor Information",
+      name: "Background Information",
     },
     {
       target: "#submit-part",
@@ -103,7 +103,7 @@ export default function EditSponsor(props) {
 
   const columns = [
     {
-      Header: "Donors Information",
+      Header: "Sponsorships Information",
       columns: [
         {
           Header: " Sponsorship Number",
@@ -201,12 +201,12 @@ export default function EditSponsor(props) {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1> Sponsor</h1>
+              <h1>Edit Sponsor</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/home"> Home </a>
+                  <a href="/finance"> Home </a>
                 </li>
                 <li className="breadcrumb-item active">Edit Sponsor </li>
               </ol>
@@ -219,7 +219,7 @@ export default function EditSponsor(props) {
           <div className="col-md-12">
             <div className="card card-default">
               <div className="card-header">
-                <h3 className="card-title"> Add Donor </h3>
+                <h3 className="card-title">Sponsor</h3>
               </div>
               <div className="card-body p-0">
                 <div className="bs-stepper" id="stepper1">
@@ -288,7 +288,7 @@ export default function EditSponsor(props) {
                         className="btn btn-primary"
                         onClick={previousStepper}
                       >
-                        Next
+                        Previous
                       </button>
                       <button
                         className="btn btn-primary"
@@ -311,7 +311,7 @@ export default function EditSponsor(props) {
           <div className="col-md-12">
             <div className="card">
               <div className="card-header">
-                <h3 className="card-title">Donations</h3>
+                <h3 className="card-title">Sponsorships</h3>
                 <div className="card-tools">
                   <button
                     type="button"
