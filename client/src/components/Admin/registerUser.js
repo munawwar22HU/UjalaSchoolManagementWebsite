@@ -10,7 +10,8 @@ export default function RegisterUser(props) {
     name: "",
     role: "Role",
     email: "",
-    image: "https://res.cloudinary.com/doow2fp6w/image/upload/v1650314984/uqsv76s8cag9pqmwzvd9.png",
+    image:
+      "https://res.cloudinary.com/doow2fp6w/image/upload/v1650314984/uqsv76s8cag9pqmwzvd9.png",
   });
 
   const [stepper, setStepper] = useState(0);
@@ -72,8 +73,10 @@ export default function RegisterUser(props) {
 
   const createUser = () => {
     UserService.registerUser(user).then(
-      () => {
-        props.history.push("/admin/manage-users");
+      (response) => {
+        console.log(response);
+        alert("User created successfully!");
+        props.history.push("/admin/" + response._id);
       },
       (error) => {
         const resMessage =
