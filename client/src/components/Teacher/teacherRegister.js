@@ -124,16 +124,16 @@ export default function TeacherRegister(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Register Teacher </h1>
+              <h1>Add Teacher </h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/home"> Home </a>
+                  <a href="/teacher"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Register Teacher </li>
+                <li className="breadcrumb-item active">Add Teacher </li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -150,7 +150,7 @@ export default function TeacherRegister(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Add - Teacher </h3>
+                <h3 className="card-title">Teacher</h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}

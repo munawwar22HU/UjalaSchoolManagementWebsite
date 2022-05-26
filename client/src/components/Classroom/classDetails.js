@@ -1,90 +1,45 @@
 import React, { useEffect, useState } from "react";
-
 import DataTable from "../Common/Table/dataTable.js";
-import CertificateService from "../../services/certificates.service";
+import ClassService from "../../services/class.service.js";
 
-export default function CertificateDetails(props) {
+export default function ClassList(props) {
   const [studentsList, setStudentList] = useState([]);
   const [dummyState, rerender] = React.useState(1);
   const [message, setMesagge] = useState({
     text: "",
   });
 
-  const updateCertificate = (id) => {
-    props.history.push("/student/certificate/" + id);
-  };
-
-  const deleteCertificate = (id) => {
-    const confirmBox = window.confirm(
-      "Do you really want to delete this Certificate ?"
-    );
-    if (confirmBox === true) {
-      CertificateService.deleteCertificate(id).then(
-        () => {
-          rerender(dummyState + 1);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          console.log(resMessage);
-          setMesagge({ ...message, text: resMessage });
-        }
-      );
-    }
+  const updateStudent = (id) => {
+    props.history.push("/student/classroom/" + id);
   };
 
   const columns = [
     {
-      Header: "Leaving Certificate Information",
+      Header: "Students Information",
       columns: [
         {
-          Header: "Name",
-          accessor: "studentName",
+          Header: "Class",
+          accessor: "class",
         },
         {
-          Header: "Roll Number",
-          accessor: "rollNumber",
+          Header: "Teacher",
+          accessor: "teacher",
         },
         {
-          Header: "Reason",
-          accessor: "reason",
-          disableSortBy: true,
+          Header: "Strength",
+          accessor: "strength",
         },
         {
-          Header: "Approved By",
-          accessor: "approvedByName",
-        },
-        {
-          Header: "Date of Appproval",
-          accessor: "approvedDate",
-          disableSortBy: true,
-        },
-        {
-          Header: "Edit",
-          accessor: "edit",
+          Header: "View",
+          accessor: "viw",
           disableFilters: true,
           disableSortBy: true,
           Cell: (row) => (
             <div>
-              <button onClick={(e) => updateCertificate(row.row.original._id)}>
-                <i className="fas fa-user-edit" aria-hidden="true" />
-              </button>
-            </div>
-          ),
-        },
-        {
-          Header: "Delete",
-          accessor: "delete",
-          disableFilters: true,
-          disableSortBy: true,
-          Cell: (row) => (
-            <div>
-              <button onClick={(e) => deleteCertificate(row.row.original._id)}>
-                <i className="fas fa-trash-alt" aria-hidden="true" />
+              <button
+                onClick={(e) => updateStudent(row.row.original.teacherId)}
+              >
+                <i className="fas fa-eye"></i>
               </button>
             </div>
           ),
@@ -94,10 +49,12 @@ export default function CertificateDetails(props) {
   ];
 
   useEffect(() => {
+    console.log("useEffect");
     console.log("dummyState's state has updated to: " + dummyState);
-    CertificateService.getAllCertificates().then(
+    ClassService.getAllClasses().then(
       (response) => {
         setStudentList(response.data);
+        console.log(response.data);
       },
       (error) => {
         const resMessage =
@@ -106,10 +63,12 @@ export default function CertificateDetails(props) {
             error.response.data.message) ||
           error.message ||
           error.toString();
+        console.log(resMessage);
         setMesagge({ ...message, text: resMessage });
       }
     );
   }, [dummyState]);
+
   return (
     <div className="content-wrapper">
       {/* Content Header (Page header) */}
@@ -117,14 +76,14 @@ export default function CertificateDetails(props) {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1>View Leaving Certificate</h1>
+              <h1>Class List</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
                   <a href="/student">Home</a>
                 </li>
-                <li className="breadcrumb-item active">View Leaving Certificate</li>
+                <li className="breadcrumb-item active">Class List</li>
               </ol>
             </div>
           </div>

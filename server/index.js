@@ -14,6 +14,7 @@ import donorRoute from "./app/routes/donor.js";
 import sponsorRoute from "./app/routes/sponsor.js";
 import donationRoute from "./app/routes/donation.js";
 import sponsorshipRoute from "./app/routes/sponsorships.js";
+import classRoute from "./app/routes/class.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -39,6 +40,7 @@ app.use("/donors", donorRoute);
 app.use("/donations", donationRoute);
 app.use("/sponsors", sponsorRoute);
 app.use("/stships", sponsorshipRoute);
+app.use("/classes", classRoute);
 
 const CONNECTION_URL = process.env.MONGO_URI;
 mongoose

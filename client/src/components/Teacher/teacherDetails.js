@@ -132,14 +132,14 @@ export default function TeacherDetails(props) {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1>Teacher Details</h1>
+              <h1>Manage Teachers</h1>
             </div>
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
                   <a href="/student">Home</a>
                 </li>
-                <li className="breadcrumb-item active">Teacher Details</li>
+                <li className="breadcrumb-item active">Manage Teachers</li>
               </ol>
             </div>
           </div>

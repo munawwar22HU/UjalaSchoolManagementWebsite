@@ -5,7 +5,6 @@ import AuthService from "../services/auth.service";
 import { Switch } from "react-router-dom";
 
 export default function Student(props) {
-
   const routes = [
     {
       name: "Students",
@@ -37,8 +36,20 @@ export default function Student(props) {
           class: "nav-icon fas fa-user-edit",
           name: "Manage Teachers",
         },
-      ],  
-    },{
+      ],
+    },
+    {
+      name: "Manage Classes",
+      class: "nav-icon fas fa-school",
+      routes: [
+        {
+          to: "/student/class",
+          class: "nav-icon fas fa-list",
+          name: "Class List",
+        },
+      ],
+    },
+    {
       name: "School Leaving Certificate",
       class: "nav-icon fas fa-certificate",
       routes: [
@@ -46,15 +57,14 @@ export default function Student(props) {
           name: "Issue Leaving Certificate",
           to: "/student/add-certificate",
           class: "nav-icon fas fa-id-card",
-          
         },
         {
           to: "/student/manage-certificate",
           class: "nav-icon fas fa-receipt",
           name: "View Leaving Certificate",
         },
-      ],  
-    }
+      ],
+    },
   ];
 
   useEffect(() => {

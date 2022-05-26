@@ -143,7 +143,7 @@ export default function CertificateUpdate(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Update Student </h1>
+              <h1>Edit Leaving Certificate</h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
@@ -152,7 +152,7 @@ export default function CertificateUpdate(props) {
                 <li className="breadcrumb-item">
                   <a href="/student"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Update Student </li>
+                <li className="breadcrumb-item active">Edit Leaving Certificate</li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -169,7 +169,7 @@ export default function CertificateUpdate(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Edit - Student </h3>
+                <h3 className="card-title">School Leaving Certificate</h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}

@@ -12,6 +12,9 @@ import Student from "./screens/Student.js";
 import StudentDetails from "./components/Student/studentDetails.js";
 import StudentRegister from "./components/Student/studentRegister.js";
 import StudentUpdate from "./components/Student/studentUpdate";
+// Class
+import ClassList from "./components/Classroom/classDetails.js";
+import Classroom from "./components/Classroom/classroom.js";
 // Teachers
 import TeacherRegister from "./components/Teacher/teacherRegister.js";
 import TeacherDetails from "./components/Teacher/teacherDetails.js";
@@ -84,6 +87,14 @@ const routes = [
       {
         path: "/student/manage-certificate",
         component: CertificateDetails,
+      },
+      {
+        path: "/student/class",
+        component: ClassList,
+      },
+      {
+        path: "/student/classroom/:id",
+        component: Classroom,
       },
       {
         path: "/student/teacher/:id",

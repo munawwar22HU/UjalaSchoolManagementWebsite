@@ -140,16 +140,16 @@ export default function StudentRegister(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Register Student </h1>
+              <h1>Add Student</h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/home"> Home </a>
+                  <a href="/student"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Register Student </li>
+                <li className="breadcrumb-item active">Add Student</li>
               </ol>
             </div>
             {/* Homepage Link End */}

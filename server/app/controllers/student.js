@@ -97,3 +97,13 @@ export const updateStudent = async (req, res) => {
     console.log(error);
   }
 };
+
+export const getStudentsInClass = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const allStudents = await StudentData.find({ class: id, status: "active" });
+    res.status(200).json(allStudents);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

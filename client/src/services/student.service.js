@@ -24,5 +24,8 @@ class StudentService {
       return response.data;
     });
   }
+  getStudentsInClass(id) {
+    return axios.get(`/students/class/${id}`);
+  }
 }
 export default new StudentService();

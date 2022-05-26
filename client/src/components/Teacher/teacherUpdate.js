@@ -141,7 +141,7 @@ export default function TeacherUpdate(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Update Teacher </h1>
+              <h1>Edit Teacher </h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
@@ -150,7 +150,7 @@ export default function TeacherUpdate(props) {
                 <li className="breadcrumb-item">
                   <a href="/student"> Home </a>
                 </li>
-                <li className="breadcrumb-item active"> Update Teacher </li>
+                <li className="breadcrumb-item active">Edit Teacher </li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -167,7 +167,7 @@ export default function TeacherUpdate(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Edit - Teacher </h3>
+                <h3 className="card-title">Teacher</h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}

@@ -159,16 +159,16 @@ export default function StudentUpdate(props) {
           <div className="row mb-2">
             {/* Page Heading Start */}
             <div className="col-sm-6">
-              <h1> Update Student </h1>
+              <h1>Edit Student </h1>
             </div>
             {/* Page Heading End */}
             {/* Homepage Link Start */}
             <div className="col-sm-6">
               <ol className="breadcrumb float-sm-right">
                 <li className="breadcrumb-item">
-                  <a href="/student"> Home </a>
+                  <a href="/student">Home</a>
                 </li>
-                <li className="breadcrumb-item active"> Update Student </li>
+                <li className="breadcrumb-item active">Edit Student</li>
               </ol>
             </div>
             {/* Homepage Link End */}
@@ -185,7 +185,7 @@ export default function StudentUpdate(props) {
             <div className="card card-default">
               {/* Card Header Start */}
               <div className="card-header">
-                <h3 className="card-title"> Edit - Student </h3>
+                <h3 className="card-title">Student </h3>
               </div>
               {/* Card Header Start */}
               {/* Card Body Start */}
