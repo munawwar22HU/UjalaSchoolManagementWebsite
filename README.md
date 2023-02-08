@@ -1,19 +1,19 @@
 # Ujala School Website
 This is an internship project developed for Ujala School to manage data of students, teachers, fee payments, sponsorships and donations. The website is implemented using ReactJS, NoSQL (MongoDB), ExpressJS, NodeJS, HTML, Bootstrap, and CSS.
 
-#Prerequisites
+# Prerequisites
 Before running this project, make sure that you have the following software installed on your computer:
 
 - Node.js
 - MongoDB
-#Running the Project
+# Running the Project
 To run the project, follow these steps:
 
 1. Clone or download the repository.
 2. Navigate to the project directory in your terminal.
-3. Install the necessary packages by running npm install.
-4. Start the server by running npm start.
-5. Open your web browser and navigate to http://localhost:3000 to access the website.
+3. Install the necessary packages by running `npm install`.
+4. Start the server by running `npm start`.
+5. Open your web browser and navigate to `http://localhost:3000` to access the website.
 
 # Login Credentials
 - To login into the admin panel, use the following credentials:
