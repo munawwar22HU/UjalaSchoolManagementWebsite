@@ -5,6 +5,7 @@ import nodemailer from "nodemailer";
 
 export const registerUser = async (req, res) => {
   const { email, name, password, role, image } = req.body;
+  console.log(email, name, password, role, image);
   const user = await UserData.findOne({ email });
   if (user) {
     return res.status(400).json({

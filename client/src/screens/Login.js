@@ -5,22 +5,22 @@ import AuthService from "../services/auth.service";
 export default function Login(props) {
   useEffect(() => {
     const currentUser = AuthService.getCurrentUser();
-    if (currentUser) {
-      switch (currentUser.role) {
-        case "Student":
-          props.history.push("/student");
-          break;
-        case "Admin":
-          props.history.push("/admin");
-          break;
-        case "Finance":
-          props.history.push("/finance");
-          break;
-      }
+    if (!currentUser) return;
 
-      window.location.reload(false);
+    switch (currentUser.role) {
+      case "Student":
+        props.history.replace("/student");
+        break;
+      case "Admin":
+        props.history.replace("/admin");
+        break;
+      case "Finance":
+        props.history.replace("/finance");
+        break;
+      default:
+        break;
     }
-  }, []);
+  }, [props.history]);
 
   const [user, setUser] = useState({
     email: "",
@@ -41,31 +41,31 @@ export default function Login(props) {
     AuthService.login(user).then(
       () => {
         const currentUser = AuthService.getCurrentUser();
+
         switch (currentUser.role) {
           case "Student":
-            props.history.push("/student");
+            props.history.replace("/student");
             break;
           case "Admin":
-            props.history.push("/admin");
+            props.history.replace("/admin");
             break;
           case "Finance":
-            props.history.push("/finance");
+            props.history.replace("/finance");
+            break;
+          default:
             break;
         }
-
-        window.location.reload();
       },
       (error) => {
         const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+          (error.response && error.response.data && error.response.data.message) ||
           error.message ||
           error.toString();
-        console.log(resMessage);
-        setUser({ ...user, message: resMessage, loading: false });
+
+        setUser((prev) => ({ ...prev, message: resMessage, loading: false }));
       }
     );
+
   };
 
   return (

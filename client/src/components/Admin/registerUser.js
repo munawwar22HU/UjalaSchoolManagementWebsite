@@ -28,11 +28,16 @@ export default function RegisterUser(props) {
 
   // Handles file upload to Server
   const handleServer = async (event) => {
+
     const { data: CLOUDINARY_URL } = await axios.get("/cloudinary/url");
+
+    console.log(CLOUDINARY_URL);
 
     const { data: CLOUDINARY_UPLOAD_PRESET } = await axios.get(
       "/cloudinary/preset"
     );
+
+    console.log(CLOUDINARY_UPLOAD_PRESET);
     // const file = event.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
@@ -186,7 +191,7 @@ export default function RegisterUser(props) {
                                 </label>
                               </div>
 
-                              <div className="input-group-append">
+                              {/* <div className="input-group-append">
                                 <span
                                   className="input-group-text"
                                   onClick={handleServer}
@@ -194,7 +199,17 @@ export default function RegisterUser(props) {
                                   {" "}
                                   Upload{" "}
                                 </span>
+                              </div> */}
+                              <div className="input-group-append">
+                                <span
+                                  className="input-group-text"
+                                  onClick={handleServer}
+                                  style={{ cursor: "pointer", position: "relative", zIndex: 10 }}
+                                >
+                                  Upload New
+                                </span>
                               </div>
+
                             </div>
                           </div>
                         </div>
